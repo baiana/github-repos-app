@@ -1,7 +1,8 @@
-package com.ana.dev.githublistapp
+package com.ana.dev.githublistapp.presentation.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.ana.dev.githublistapp.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
