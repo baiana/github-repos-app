@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="12dp"
+    android:background="@android:color/darker_gray">
+
+    <TextView
+        android:id="@+id/projectTXT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Nome do projeto" />
+
+    <TextView
+        android:id="@+id/userTXT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        app:layout_constraintStart_toStartOf="@id/projectTXT"
+        app:layout_constraintTop_toBottomOf="@id/projectTXT"
+        tools:text="baiana" />
+
+    <ImageView
+        android:id="@+id/avatarIMG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/projectTXT" />
+</androidx.constraintlayout.widget.ConstraintLayout>
