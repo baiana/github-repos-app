@@ -1,15 +1,15 @@
 package com.ana.dev.githublistapp.data
 
-import android.telecom.Call
-import com.ana.dev.githublistapp.data.response.ProjectResponse
+import com.ana.dev.githublistapp.data.response.ProjectResult
+import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface GithubServices {
     @GET("/repositories")
-    fun listProjects(): Call<List<ProjectResponse>>
+    fun listProjects(): Call<List<ProjectResult>>
 
-    @GET("/search/repositories?q={search}")
-    fun searchProjects(@Path("search") query: String): Call<List<ProjectResponse>>
+    @GET("/search/repositories")
+    fun searchProjects(@Query("q") query: String): Call<List<ProjectResult>>
 
 }

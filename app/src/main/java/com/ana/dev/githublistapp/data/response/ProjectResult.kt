@@ -1,6 +1,6 @@
 package com.ana.dev.githublistapp.data.response
 
-data class ProjectResponse(
+data class ProjectResult(
     val id: String,
     val name: String,
     val owner: OwnerResponse,
