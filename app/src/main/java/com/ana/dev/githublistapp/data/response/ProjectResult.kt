@@ -1,9 +1,14 @@
 package com.ana.dev.githublistapp.data.response
 
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class ProjectResult(
     val id: String,
     val name: String,
-    val owner: OwnerResponse,
+    @Json(name = "owner")
+    val user: OwnerResponse,
     val description: String,
     val url: String
 )
