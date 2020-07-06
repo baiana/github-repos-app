@@ -23,8 +23,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         viewModelSetup()
         val navController = Navigation.findNavController(this, R.id.navHost)
-
-
     }
 
     private fun viewModelSetup() {

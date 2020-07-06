@@ -9,8 +9,6 @@ import org.koin.core.context.startKoin
 
 class CoreApplication:Application() {
 
-    private val API: GithubServices by inject()
-
     override fun onCreate() {
         super.onCreate()
         startKoin {
