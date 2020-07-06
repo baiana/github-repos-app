@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ana.dev.githublistapp.data.model.Project
@@ -30,6 +31,11 @@ class ProjectsFragment : Fragment() {
         binding = FragmentProjectsBinding.inflate(layoutInflater)
         // Inflate the layout for this fragment
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        search()
     }
 
     private fun setupViewModel() {
@@ -83,8 +89,33 @@ class ProjectsFragment : Fragment() {
             }
 
         } else {
-
+            val x = 0
         }
         //todo implementar swap
+    }
+
+    private fun search() {
+        binding.projectSV.apply {
+            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    query?.let {
+                        viewModel.searchProjectsByName(it)
+                    }
+                    return true
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    newText?.takeIf { it.length > 4 }?.let {
+                        viewModel.searchProjectsByName(it)
+                    }
+                    return true
+                }
+            })
+
+            setOnCloseListener {
+                viewModel.resetSearch()
+                true
+            }
+        }
     }
 }

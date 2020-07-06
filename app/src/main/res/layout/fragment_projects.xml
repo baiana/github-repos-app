@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.main.fragments.ProjectsFragment">
 
+
     <androidx.core.widget.ContentLoadingProgressBar
         android:id="@+id/loading"
-        android:layout_width="wrap_content"
         style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:visibility="visible" />
@@ -17,8 +19,18 @@
         android:id="@+id/projectsRV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/projectSV"
         tools:itemCount="6"
         tools:listitem="@layout/project_list_item" />
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/projectSV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:textCursorDrawable="@null"
+        app:iconifiedByDefault="false"
+        app:queryBackground="@null" />
 
 
 </RelativeLayout>

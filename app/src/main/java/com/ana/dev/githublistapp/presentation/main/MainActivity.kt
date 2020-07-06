@@ -23,34 +23,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         val navController = Navigation.findNavController(this, R.id.navHost)
-        search()
     }
 
-    private fun search() {
-        binding.projectSV.apply {
-            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String?): Boolean {
-                    query?.let {
-                        viewModel.searchProjectsByName(it)
-                    }
-                    return true
-                }
 
-                override fun onQueryTextChange(newText: String?): Boolean {
-                    newText?.let {
-                        viewModel.searchProjectsByName(it)
-                    }
-                    return true
-                }
-            })
-
-            setOnCloseListener {
-                viewModel.resetSearch()
-                true
-            }
-
-        }
-    }
 
 
 }

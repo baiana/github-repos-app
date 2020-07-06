@@ -58,11 +58,12 @@ class MainViewModel : ViewModel(), KoinComponent {
         _viewStateLiveData.postValue(newState)
     }
 
-    fun searchProjectsByName(query: String) {
+    private fun searchWithAPI(query: String) {
+        val currentList = fragmentProjectsStateLiveData.value?.projectList ?: ArrayList()
         _viewStateLiveData.postValue(startLoading())
         viewModelScope.launch {
             with(repository.searchProjectByName(query)) {
-                val currentList = fragmentProjectsStateLiveData.value?.projectList ?: ArrayList()
+
                 if (isSuccessful) {
                     body()?.result?.let {
                         _fragmentProjectsStateLiveData.postValue(
@@ -78,6 +79,14 @@ class MainViewModel : ViewModel(), KoinComponent {
                 }
             }
         }
+
+    }
+
+    fun searchProjectsByName(query: String) {
+        val result =
+            fragmentProjectsStateLiveData.value?.projectList?.filter { it.name.startsWith(query) } as ArrayList
+        _fragmentProjectsStateLiveData.postValue(displayProjectList(result))
+
     }
 
     fun resetSearch() {
