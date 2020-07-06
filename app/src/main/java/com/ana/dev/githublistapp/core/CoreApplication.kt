@@ -1,7 +1,6 @@
 package com.ana.dev.githublistapp.core
 
 import android.app.Application
-import com.ana.dev.githublistapp.data.GithubServices
 import com.ana.dev.githublistapp.di.apiModule
 import com.ana.dev.githublistapp.di.mainModule
 import org.koin.android.ext.android.inject

@@ -1,7 +1,9 @@
 package com.ana.dev.githublistapp.data.repository
 
-import com.ana.dev.githublistapp.data.response.ProjectBodyResponse
+import com.ana.dev.githublistapp.data.response.ProjectResult
+import retrofit2.Response
 
 interface ProjectsRepository {
-    fun getProjectsList(): ProjectBodyResponse
+    suspend fun getProjectsList(): Response<List<ProjectResult>>
+    suspend fun searchProjectByName(name: String): Response<List<ProjectResult>>
 }
