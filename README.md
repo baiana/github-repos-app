@@ -13,6 +13,7 @@
  - Koin;
  - Coroutines; 
  - Navigation component; 
+ - CircleImageView;
  - Picasso, Retrofit e Moshi;
  - MocK; 
 
@@ -24,8 +25,8 @@
 
  - [x] Listar repositórios públicos do github consumindo a API disponibilizada; 
  - [x] Pesquisar repositórios públicos;
- - [ ] consultar informações básicas sobre o repositório;
- - [ ] Direcionar para link do repositório :cherries: 
+ - [x] consultar informações básicas sobre o repositório;
+ - [x] Direcionar para link do repositório :cherries: 
  - [ ] mostrar meu perfil :cherries:
 
 ## Justificativa para o uso das tecnologias 
