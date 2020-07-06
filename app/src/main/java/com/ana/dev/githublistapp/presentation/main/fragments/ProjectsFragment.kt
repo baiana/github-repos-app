@@ -106,6 +106,7 @@ class ProjectsFragment : Fragment() {
 
         } else {
             (binding.projectsRV.adapter as ProjectListAdapter).swap(projects)
+            binding.projectsRV.smoothScrollToPosition(0)
         }
     }
 

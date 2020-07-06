@@ -8,11 +8,11 @@
     android:layout_margin="8dp"
    >
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/avatarIMG"
         android:layout_width="36dp"
         android:layout_height="36dp"
-        android:background="@color/colorAccent"
+        android:src="@drawable/ic_user_place_holder"
         android:layout_margin="6dp"
         app:layout_constraintEnd_toStartOf="@id/infoContainerLL"
         app:layout_constraintStart_toStartOf="parent"
