@@ -26,33 +26,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun viewModelSetup() {
-        viewModel.stateLiveData.observe(this, Observer {
-            it?.let {
-                when {
-                    it.isLoading -> {
-                        displayLoading()
-                    }
-                    it.error.isNotBlank() -> {
-                        displayError(it.error)
-                    }
-                    //   it.projectList?.isNotEmpty() == true -> {
-                    //      recyclerSetup(it.projectList)
-                    //}
-//                    todo configurações do search e do recycler
-
-                }
-            }
-        })
 
     }
 
-    private fun displayLoading() {
-//        todo implementar
-    }
 
-    private fun displayError(error: String) {
-//        todo implementar
-    }
 
 
 }

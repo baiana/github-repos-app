@@ -17,8 +17,13 @@ class MainViewModel : ViewModel(), KoinComponent {
     private val _viewStateLiveData = MutableLiveData<MainViewState>()
     val stateLiveData: LiveData<MainViewState> get() = _viewStateLiveData
 
+    private val _fragmentProjectsStateLiveData = MutableLiveData<MainViewState>()
+    val fragmentProjectsStateLiveData: LiveData<MainViewState> get() = _fragmentProjectsStateLiveData
+
+
     init {
         _viewStateLiveData.value = MainViewState()
+        _fragmentProjectsStateLiveData.value = MainViewState()
     }
 
     fun getProjectsList() {
@@ -29,7 +34,7 @@ class MainViewModel : ViewModel(), KoinComponent {
                 if (this.isSuccessful) {
                     body()?.takeIf { it.isNotEmpty() }?.let {
                         val convertedList = convertBodyToProjectList(it)
-                        changeViewState(displayProjectList(convertedList))
+                        _fragmentProjectsStateLiveData.postValue(displayProjectList(convertedList))
                     }
                 } else {
 //                    todo tratamento de erro
