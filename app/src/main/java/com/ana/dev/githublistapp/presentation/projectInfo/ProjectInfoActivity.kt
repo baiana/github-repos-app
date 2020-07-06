@@ -5,8 +5,8 @@ import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import com.ana.dev.githublistapp.R
 import com.ana.dev.githublistapp.core.loadWithPicasso
-import com.ana.dev.githublistapp.data.model.Project
 import com.ana.dev.githublistapp.databinding.ActivityProjectInfoBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -45,7 +45,7 @@ class ProjectInfoActivity : AppCompatActivity() {
         viewModel.displayProjectInfo(intent.getParcelableExtra(PROJECT))
     }
 
-    private fun openRepositoryOnWeb(url: String) {
+    private fun openExternalLink(url: String) {
         val intent = Intent(Intent.ACTION_VIEW)
         intent.data = Uri.parse(url)
         startActivity(intent)
@@ -53,9 +53,17 @@ class ProjectInfoActivity : AppCompatActivity() {
 
     private fun openProjectButtonCLickListener(url: String) {
         binding.openProjectBTN.setOnClickListener {
-            openRepositoryOnWeb(url)
+            openExternalLink(url)
+        }
+        binding.userInfoLL.setOnClickListener {
+            openUserProfile()
         }
 
+    }
+
+    private fun openUserProfile() {
+        val url = resources.getString(R.string.github_url_x, viewModel.getUsername())
+        openExternalLink(url)
     }
 
     companion object {

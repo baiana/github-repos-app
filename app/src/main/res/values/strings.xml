@@ -4,4 +4,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="repo_description">Descrição do repositório:</string>
     <string name="visit_repo">Visitar Repositório</string>
+    <string name="github_url_x">https://github.com/%s</string>
 </resources>

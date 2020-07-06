@@ -3,6 +3,7 @@ package com.ana.dev.githublistapp.presentation.projectInfo
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.ana.dev.githublistapp.R
 import com.ana.dev.githublistapp.data.model.Project
 
 class ProjectInfoViewModel() : ViewModel() {
@@ -16,6 +17,10 @@ class ProjectInfoViewModel() : ViewModel() {
         } ?: run {
             //todo fechar activity com erro
         }
+    }
+
+    fun getUsername(): String {
+        return projectInfoLiveData.value?.user?.name ?: ""
     }
 
 }
