@@ -3,6 +3,7 @@ package com.ana.dev.githublistapp.presentation.main
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ana.dev.githublistapp.R
 import com.ana.dev.githublistapp.data.model.Project
@@ -23,6 +24,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         viewModelSetup()
+        val navController = Navigation.findNavController(this, R.id.navHost)
+
 
     }
 
@@ -36,15 +39,15 @@ class MainActivity : AppCompatActivity() {
                     it.error.isNotBlank() -> {
                         displayError(it.error)
                     }
-                    it.projectList?.isNotEmpty() == true -> {
-                        recyclerSetup(it.projectList)
-                    }
+                    //   it.projectList?.isNotEmpty() == true -> {
+                    //      recyclerSetup(it.projectList)
+                    //}
 //                    todo configurações do search e do recycler
 
                 }
             }
         })
-        viewModel.getProjectsList()
+
     }
 
     private fun displayLoading() {
@@ -55,16 +58,5 @@ class MainActivity : AppCompatActivity() {
 //        todo implementar
     }
 
-    private fun recyclerSetup(projects: ArrayList<Project>) {
-        if (binding.projectsRV.adapter == null) {
-            with(binding.projectsRV) {
-                this.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-                this.adapter = ProjectListAdapter(projects, resources)
-            }
 
-        } else {
-
-        }
-        //todo implementar
-    }
 }
