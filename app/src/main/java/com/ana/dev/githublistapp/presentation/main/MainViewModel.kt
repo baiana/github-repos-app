@@ -17,8 +17,13 @@ class MainViewModel : ViewModel(), KoinComponent {
     private val _viewStateLiveData = MutableLiveData<MainViewState>()
     val stateLiveData: LiveData<MainViewState> get() = _viewStateLiveData
 
+    private val _fragmentProjectsStateLiveData = MutableLiveData<MainViewState>()
+    val fragmentProjectsStateLiveData: LiveData<MainViewState> get() = _fragmentProjectsStateLiveData
+
+
     init {
         _viewStateLiveData.value = MainViewState()
+        _fragmentProjectsStateLiveData.value = MainViewState()
     }
 
     fun getProjectsList() {
@@ -29,7 +34,7 @@ class MainViewModel : ViewModel(), KoinComponent {
                 if (this.isSuccessful) {
                     body()?.takeIf { it.isNotEmpty() }?.let {
                         val convertedList = convertBodyToProjectList(it)
-                        changeViewState(displayProjectList(convertedList))
+                        _fragmentProjectsStateLiveData.postValue(displayProjectList(convertedList))
                     }
                 } else {
 //                    todo tratamento de erro
@@ -52,5 +57,50 @@ class MainViewModel : ViewModel(), KoinComponent {
     private fun changeViewState(newState: MainViewState) {
         _viewStateLiveData.postValue(newState)
     }
+
+    private fun searchWithAPI(query: String) {
+        val currentList = fragmentProjectsStateLiveData.value?.projectList ?: ArrayList()
+        _fragmentProjectsStateLiveData.postValue(startLoading(currentList))
+        viewModelScope.launch {
+            with(repository.searchProjectByName(query)) {
+                if (isSuccessful) {
+                    body()?.result?.let {
+                        _fragmentProjectsStateLiveData.postValue(
+                            displaySearchResult(
+                                convertBodyToProjectList(it), currentList
+                            )
+                        )
+                    } ?: run {
+                        //todo handle error lista nula
+                    }
+                } else {
+
+                }
+            }
+        }
+
+    }
+
+    fun searchProjectsByName(query: String, submitted: Boolean = false) {
+        if (query.isNotBlank() && (submitted || query.length > 4)) {
+            searchWithAPI(query)
+        } else {
+            resetSearch()
+        }
+
+    }
+
+    private fun localSearch(query: String) {
+        val currentList = fragmentProjectsStateLiveData.value?.projectList ?: ArrayList()
+        val result =
+            fragmentProjectsStateLiveData.value?.projectList?.filter { it.name.startsWith(query) } as ArrayList
+        _fragmentProjectsStateLiveData.postValue(displaySearchResult(result, currentList))
+    }
+
+    fun resetSearch() {
+        val regularList = fragmentProjectsStateLiveData.value?.projectList ?: ArrayList()
+        _fragmentProjectsStateLiveData.postValue(displayProjectList(regularList))
+    }
+
 
 }

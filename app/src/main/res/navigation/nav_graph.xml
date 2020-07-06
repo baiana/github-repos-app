@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/projectsFragment"
-        android:name="com.ana.dev.githublistapp.presentation.main.ProjectsFragment"
+        android:name="com.ana.dev.githublistapp.presentation.main.fragments.ProjectsFragment"
         android:label="fragment_projects"
         tools:layout="@layout/fragment_projects" />
 </navigation>
