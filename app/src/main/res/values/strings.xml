@@ -2,4 +2,6 @@
     <string name="app_name">github list app</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="repo_description">Descrição do repositório:</string>
+    <string name="visit_repo">Visitar Repositório</string>
 </resources>

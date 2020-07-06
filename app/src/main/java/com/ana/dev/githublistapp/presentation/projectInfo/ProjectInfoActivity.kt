@@ -24,6 +24,7 @@ class ProjectInfoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         viewModelSetup()
+        binding.closeBTN.setOnClickListener { onBackPressed() }
     }
 
     private fun viewModelSetup() {
