@@ -33,28 +33,19 @@
             android:id="@+id/projectTXT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:textColor="#eeeeee"
-            android:textSize="16sp"
-            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Nome do projeto" />
+            tools:text="Nome do projeto"
+            style="@style/itemTitle" />
 
         <TextView
             android:id="@+id/userTXT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:fontFamily="@font/roboto_light"
-            android:maxLines="2"
-            android:paddingHorizontal="12dp"
-            android:paddingBottom="12dp"
-            android:textColor="#ececec"
-            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@id/projectTXT"
             app:layout_constraintTop_toBottomOf="@id/projectTXT"
-            tools:text="baiana" />
+            tools:text="baiana"
+            style="@style/itemDescription" />
     </LinearLayout>
 
 

@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#090808</color>
     <color name="colorAccent">#20a456</color>
     <color name="item_background_grey">#31363f</color>
+
+    <color name="eggshell_white">#eeeeee</color>
 </resources>
