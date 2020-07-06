@@ -4,15 +4,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.ana.dev.githublistapp.R
-import com.ana.dev.githublistapp.data.model.Project
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.ana.dev.githublistapp.databinding.ActivityMainBinding
-import org.koin.android.ext.android.inject
 
 
 class MainActivity : AppCompatActivity() {
-    private val viewModel: MainViewModel by inject()
+    private val viewModel: MainViewModel by viewModel()
 
     private val binding by lazy(LazyThreadSafetyMode.NONE) {
         ActivityMainBinding.inflate(

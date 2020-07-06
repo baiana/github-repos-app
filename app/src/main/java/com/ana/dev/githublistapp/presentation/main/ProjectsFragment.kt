@@ -13,9 +13,10 @@ import com.ana.dev.githublistapp.R
 import com.ana.dev.githublistapp.data.model.Project
 import com.ana.dev.githublistapp.databinding.FragmentProjectsBinding
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProjectsFragment : Fragment() {
-    private val viewModel: MainViewModel by inject()
+    private val viewModel: MainViewModel by viewModel()
 
     private lateinit var binding: FragmentProjectsBinding
 
