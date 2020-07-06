@@ -9,6 +9,6 @@ data class ProjectResult(
     val name: String,
     @Json(name = "owner")
     val user: OwnerResponse,
-    val description: String,
+    val description: String? = "",
     val url: String
 )

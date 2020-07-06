@@ -1,6 +1,5 @@
 package com.ana.dev.githublistapp.core
 
-import com.ana.dev.githublistapp.data.GithubServices
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
