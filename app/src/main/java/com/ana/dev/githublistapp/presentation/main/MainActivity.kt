@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.Navigation
 import com.ana.dev.githublistapp.R
 import com.ana.dev.githublistapp.data.model.Project
@@ -31,16 +32,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun observeSelected() {
-        viewModel.selected.observe(this,
-            Observer {
-                displayItemInfo(it)
-            })
+        viewModel.stateLiveData.observe(
+            this, Observer {
+                it.selected?.let {
+                    displayItemInfo(it)
+                }
+            }
+        )
     }
 
-    private fun displayItemInfo(project: Project) {
-        val intent = Intent(this, ProjectInfoActivity::class.java)
-        intent.putExtra(ProjectInfoActivity.PROJECT, project)
-        startActivity(intent)
+     fun displayItemInfo(project: Project?) {
+        project?.let {
+            val intent = Intent(this, ProjectInfoActivity::class.java)
+            intent.putExtra(ProjectInfoActivity.PROJECT, project)
+            startActivity(intent)
+        }
 
     }
 
