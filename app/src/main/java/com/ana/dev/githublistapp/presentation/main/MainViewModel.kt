@@ -43,7 +43,7 @@ class MainViewModel : ViewModel(), KoinComponent {
             Project(
                 it.id,
                 it.name,
-                User(it.name, it.url),
+                User(it.user.username, it.user.pictureLink),
                 it.description ?: "",
                 it.url
             )

@@ -17,7 +17,7 @@
         app:queryBackground="@null" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/projectsRL"
+        android:id="@+id/projectsRV"
         tools:itemCount="6"
         tools:listitem="@layout/project_list_item"
         android:layout_width="match_parent"

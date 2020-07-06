@@ -3,6 +3,7 @@ package com.ana.dev.githublistapp.presentation.main
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.ana.dev.githublistapp.R
 import com.ana.dev.githublistapp.data.model.Project
 import com.ana.dev.githublistapp.databinding.ActivityMainBinding
@@ -43,6 +44,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+        viewModel.getProjectsList()
     }
 
     private fun displayLoading() {
@@ -53,7 +55,16 @@ class MainActivity : AppCompatActivity() {
 //        todo implementar
     }
 
-    private fun recyclerSetup(projects:ArrayList<Project>){
+    private fun recyclerSetup(projects: ArrayList<Project>) {
+        if (binding.projectsRV.adapter == null) {
+            with(binding.projectsRV) {
+                this.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                this.adapter = ProjectListAdapter(projects, resources)
+            }
+
+        } else {
+
+        }
         //todo implementar
     }
 }
