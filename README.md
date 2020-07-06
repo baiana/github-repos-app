@@ -27,7 +27,7 @@
  - [x] Pesquisar repositórios públicos;
  - [x] consultar informações básicas sobre o repositório;
  - [x] Direcionar para link do repositório :cherries: 
- - [ ] mostrar meu perfil :cherries:
+ - [ ] Direcionar para link do perfil :cherries:
 
 ## :bar_chart: Justificativa para o uso das tecnologias 
 
