@@ -20,6 +20,7 @@ class MainViewModel : ViewModel(), KoinComponent {
     private val _fragmentProjectsStateLiveData = MutableLiveData<MainViewState>()
     val fragmentProjectsStateLiveData: LiveData<MainViewState> get() = _fragmentProjectsStateLiveData
 
+     val selected = MutableLiveData<Project>()
 
     init {
         _viewStateLiveData.value = MainViewState()

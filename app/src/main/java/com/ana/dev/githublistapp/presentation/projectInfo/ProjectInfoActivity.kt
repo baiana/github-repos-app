@@ -52,7 +52,7 @@ class ProjectInfoActivity : AppCompatActivity() {
 
     private fun openProjectButtonCLickListener(url: String) {
         binding.openProjectBTN.setOnClickListener {
-            viewModel.projectInfoLiveData.value?.url?.let { it -> openRepositoryOnWeb(it) }
+            openRepositoryOnWeb(url)
         }
 
     }
