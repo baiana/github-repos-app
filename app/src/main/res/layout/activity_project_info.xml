@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".presentation.projectInfo.ProjectInfoActivity">
+
+    <TextView
+        android:id="@+id/projectTXT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="46sp"
+        tools:text="Nome do projeto" />
+
+    <TextView
+        android:id="@+id/descriptionTXT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="26sp"
+        tools:text="descrição do projeto" />
+
+    <TextView
+        android:id="@+id/userTXT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        tools:text="Nome do usuário " />
+
+    <ImageView
+        android:id="@+id/avatarIMG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/openProjectBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="ir para o repositório" />
+
+</LinearLayout>
