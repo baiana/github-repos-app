@@ -35,7 +35,7 @@ class ProjectsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        search()
+        searchConfig()
     }
 
     private fun setupViewModel() {
@@ -60,7 +60,16 @@ class ProjectsFragment : Fragment() {
     }
 
     private fun handleSearchResult(searchData: ArrayList<Project>) {
-        recyclerSetup(searchData)
+        if (searchData.isNotEmpty()){
+            recyclerSetup(searchData)
+        }else{
+            displayEmptySearchScreen()
+        }
+
+    }
+
+    private fun displayEmptySearchScreen() {
+        
 
     }
 
@@ -89,25 +98,25 @@ class ProjectsFragment : Fragment() {
             }
 
         } else {
-            val x = 0
+            (binding.projectsRV.adapter as ProjectListAdapter).swap(projects)
         }
         //todo implementar swap
     }
 
-    private fun search() {
+    private fun searchConfig() {
         binding.projectSV.apply {
             setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     query?.let {
-                        viewModel.searchProjectsByName(it)
+                        viewModel.searchProjectsByName(it, submitted = true)
                     }
                     return true
                 }
 
                 override fun onQueryTextChange(newText: String?): Boolean {
-                    newText?.takeIf { it.length > 4 }?.let {
-                        viewModel.searchProjectsByName(it)
-                    }
+                    val search = newText ?: ""
+                    viewModel.searchProjectsByName(search)
+
                     return true
                 }
             })

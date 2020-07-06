@@ -63,7 +63,6 @@ class MainViewModel : ViewModel(), KoinComponent {
         _viewStateLiveData.postValue(startLoading())
         viewModelScope.launch {
             with(repository.searchProjectByName(query)) {
-
                 if (isSuccessful) {
                     body()?.result?.let {
                         _fragmentProjectsStateLiveData.postValue(
@@ -82,11 +81,20 @@ class MainViewModel : ViewModel(), KoinComponent {
 
     }
 
-    fun searchProjectsByName(query: String) {
+    fun searchProjectsByName(query: String, submitted: Boolean = false) {
+        if (query.isNotBlank() && (submitted || query.length > 4)) {
+            searchWithAPI(query)
+        } else {
+            resetSearch()
+        }
+
+    }
+
+    private fun localSearch(query: String) {
+        val currentList = fragmentProjectsStateLiveData.value?.projectList ?: ArrayList()
         val result =
             fragmentProjectsStateLiveData.value?.projectList?.filter { it.name.startsWith(query) } as ArrayList
-        _fragmentProjectsStateLiveData.postValue(displayProjectList(result))
-
+        _fragmentProjectsStateLiveData.postValue(displaySearchResult(result, currentList))
     }
 
     fun resetSearch() {

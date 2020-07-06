@@ -10,7 +10,7 @@ import com.ana.dev.githublistapp.data.model.Project
 import com.ana.dev.githublistapp.databinding.ProjectListItemBinding
 import com.squareup.picasso.Picasso
 
-class ProjectListAdapter(val projects: ArrayList<Project>, val resources: Resources?) :
+class ProjectListAdapter(private var projects: ArrayList<Project>, val resources: Resources?) :
     RecyclerView.Adapter<ProjectListAdapter.ProjectHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProjectHolder {
@@ -36,6 +36,12 @@ class ProjectListAdapter(val projects: ArrayList<Project>, val resources: Resour
             }
         }
     }
+
+    fun swap(projectsList: ArrayList<Project>) {
+        this.projects = projectsList
+        notifyDataSetChanged()
+    }
+
 
 
 }
