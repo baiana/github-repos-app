@@ -7,13 +7,7 @@
     tools:context=".presentation.main.fragments.ProjectsFragment">
 
 
-    <androidx.core.widget.ContentLoadingProgressBar
-        android:id="@+id/loading"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:visibility="visible" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/projectsRV"
@@ -31,6 +25,13 @@
         android:textCursorDrawable="@null"
         app:iconifiedByDefault="true"
         app:queryBackground="@null" />
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:id="@+id/loading"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="visible" />
 
 
 </RelativeLayout>

@@ -60,7 +60,7 @@ class MainViewModel : ViewModel(), KoinComponent {
 
     private fun searchWithAPI(query: String) {
         val currentList = fragmentProjectsStateLiveData.value?.projectList ?: ArrayList()
-        _viewStateLiveData.postValue(startLoading())
+        _fragmentProjectsStateLiveData.postValue(startLoading(currentList))
         viewModelScope.launch {
             with(repository.searchProjectByName(query)) {
                 if (isSuccessful) {

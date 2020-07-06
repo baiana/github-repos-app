@@ -29,7 +29,6 @@ class ProjectsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentProjectsBinding.inflate(layoutInflater)
-        // Inflate the layout for this fragment
         return binding.root
     }
 
@@ -41,18 +40,20 @@ class ProjectsFragment : Fragment() {
     private fun setupViewModel() {
         viewModel.fragmentProjectsStateLiveData.observe(this, Observer {
             when {
-                it.searchData != null -> {
-                    handleSearchResult(it.searchData)
-                }
-                it.projectList?.isNotEmpty() == true -> {
-                    recyclerSetup(it.projectList)
-                }
                 it.isLoading -> {
                     displayLoading()
                 }
                 it.error.isNotBlank() -> {
                     displayError(it.error)
                 }
+
+                it.searchData != null -> {
+                    handleSearchResult(it.searchData)
+                }
+                it.projectList?.isNotEmpty() == true -> {
+                    recyclerSetup(it.projectList)
+                }
+
             }
 
         })
@@ -60,16 +61,14 @@ class ProjectsFragment : Fragment() {
     }
 
     private fun handleSearchResult(searchData: ArrayList<Project>) {
-        if (searchData.isNotEmpty()){
+        if (searchData.isNotEmpty()) {
             recyclerSetup(searchData)
-        }else{
+        } else {
             displayEmptySearchScreen()
         }
-
     }
 
     private fun displayEmptySearchScreen() {
-        
 
     }
 
@@ -80,7 +79,6 @@ class ProjectsFragment : Fragment() {
 
     private fun displayLoading() {
         binding.loading.show()
-
     }
 
 
@@ -100,7 +98,6 @@ class ProjectsFragment : Fragment() {
         } else {
             (binding.projectsRV.adapter as ProjectListAdapter).swap(projects)
         }
-        //todo implementar swap
     }
 
     private fun searchConfig() {

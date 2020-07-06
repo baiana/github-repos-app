@@ -15,7 +15,8 @@ fun MainViewModel.displayProjectList(result: ArrayList<Project>) =
 fun MainViewModel.displaySearchResult(result: ArrayList<Project>, currentList: ArrayList<Project>) =
     MainViewState(isLoading = false, searchData = result, projectList = currentList)
 
-fun MainViewModel.startLoading() = MainViewState(isLoading = true)
+fun MainViewModel.startLoading(currentList: ArrayList<Project>? = null) =
+    MainViewState(isLoading = true, projectList = currentList)
 
 fun MainViewModel.clear() = MainViewState()
 fun MainViewModel.displayError(error: String) = MainViewState(isLoading = false, error = error)
