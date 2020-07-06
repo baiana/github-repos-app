@@ -58,4 +58,32 @@ class MainViewModel : ViewModel(), KoinComponent {
         _viewStateLiveData.postValue(newState)
     }
 
+    fun searchProjectsByName(query: String) {
+        _viewStateLiveData.postValue(startLoading())
+        viewModelScope.launch {
+            with(repository.searchProjectByName(query)) {
+                val currentList = fragmentProjectsStateLiveData.value?.projectList ?: ArrayList()
+                if (isSuccessful) {
+                    body()?.result?.let {
+                        _fragmentProjectsStateLiveData.postValue(
+                            displaySearchResult(
+                                convertBodyToProjectList(it), currentList
+                            )
+                        )
+                    } ?: run {
+                        //todo handle error lista nula
+                    }
+                } else {
+
+                }
+            }
+        }
+    }
+
+    fun resetSearch() {
+        val regularList = fragmentProjectsStateLiveData.value?.projectList ?: ArrayList()
+        _fragmentProjectsStateLiveData.postValue(displayProjectList(regularList))
+    }
+
+
 }

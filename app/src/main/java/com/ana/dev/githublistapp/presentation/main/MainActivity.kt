@@ -2,6 +2,7 @@ package com.ana.dev.githublistapp.presentation.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import com.ana.dev.githublistapp.R
@@ -21,15 +22,35 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        viewModelSetup()
         val navController = Navigation.findNavController(this, R.id.navHost)
+        search()
     }
 
-    private fun viewModelSetup() {
+    private fun search() {
+        binding.projectSV.apply {
+            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    query?.let {
+                        viewModel.searchProjectsByName(it)
+                    }
+                    return true
+                }
 
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    newText?.let {
+                        viewModel.searchProjectsByName(it)
+                    }
+                    return true
+                }
+            })
+
+            setOnCloseListener {
+                viewModel.resetSearch()
+                true
+            }
+
+        }
     }
-
-
 
 
 }

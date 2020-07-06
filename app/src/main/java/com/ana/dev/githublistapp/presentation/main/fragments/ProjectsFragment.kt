@@ -35,6 +35,9 @@ class ProjectsFragment : Fragment() {
     private fun setupViewModel() {
         viewModel.fragmentProjectsStateLiveData.observe(this, Observer {
             when {
+                it.searchData != null -> {
+                    handleSearchResult(it.searchData)
+                }
                 it.projectList?.isNotEmpty() == true -> {
                     recyclerSetup(it.projectList)
                 }
@@ -50,6 +53,11 @@ class ProjectsFragment : Fragment() {
         viewModel.getProjectsList()
     }
 
+    private fun handleSearchResult(searchData: ArrayList<Project>) {
+        recyclerSetup(searchData)
+
+    }
+
     private fun displayError(error: String) {
         binding.loading.hide()
         TODO("Not yet implemented")
@@ -59,6 +67,7 @@ class ProjectsFragment : Fragment() {
         binding.loading.show()
 
     }
+
 
     private fun recyclerSetup(projects: ArrayList<Project>) {
         binding.loading.hide()
