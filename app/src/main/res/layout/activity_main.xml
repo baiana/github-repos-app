@@ -16,12 +16,13 @@
         app:iconifiedByDefault="false"
         app:queryBackground="@null" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/projectsRV"
-        tools:itemCount="6"
-        tools:listitem="@layout/project_list_item"
+    <fragment
+        android:id="@+id/navHost"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_graph" />
 
 
 </LinearLayout>
