@@ -29,7 +29,7 @@
  - [x] Direcionar para link do repositório :cherries: 
  - [ ] mostrar meu perfil :cherries:
 
-## Justificativa para o uso das tecnologias 
+## :bar_chart: Justificativa para o uso das tecnologias 
 
 **Decisões técnicas:**
 
@@ -37,7 +37,7 @@
 
 
 
-## Problemáticas encontradas 
+## :interrobang: Problemáticas encontradas 
 
  - Ao fazer um commit com um personal token, ele é automaticamente desativado pelo github, necessitando assim da configuração inicial colocada nessa documentação.
  - Ao utilizar a API sem autenticação, as chamadas são bloqueadas após 60 requests por hora ( a autenticação aumenta esse limite para 5000). 
