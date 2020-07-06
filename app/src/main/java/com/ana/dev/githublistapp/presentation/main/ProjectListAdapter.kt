@@ -33,9 +33,9 @@ class ProjectListAdapter(private var projects: ArrayList<Project>) :
 
         fun bind(repo: Project, detailsClickListener: OnProjectClickListener?) {
             with(binding) {
-                projectTXT.text = repo.name
-                userTXT.text = repo.user.name
-                avatarIMG.loadWithPicasso(repo.url)
+                projectTXT.text = "${repo.user.name}/${repo.name}"
+                userTXT.text = repo.description
+                avatarIMG.loadWithPicasso(repo.user.pictureUrl)
                 holderCL.setOnClickListener {
                     detailsClickListener?.onClick(repo)
                 }

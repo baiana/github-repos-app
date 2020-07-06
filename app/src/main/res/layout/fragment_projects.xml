@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#121212"
     tools:context=".presentation.main.fragments.ProjectsFragment">
-
-
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -21,10 +20,11 @@
         android:id="@+id/projectSV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
+        android:background="#282c34"
         android:textCursorDrawable="@null"
         app:iconifiedByDefault="true"
         app:queryBackground="@null" />
+
     <androidx.core.widget.ContentLoadingProgressBar
         android:id="@+id/loading"
         style="?android:attr/progressBarStyleLarge"

@@ -2,34 +2,60 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/holderCL"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="12dp"
-    android:id="@+id/holderCL"
-    android:background="@android:color/darker_gray">
-
-    <TextView
-        android:id="@+id/projectTXT"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="12dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Nome do projeto" />
-
-    <TextView
-        android:id="@+id/userTXT"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="12dp"
-        app:layout_constraintStart_toStartOf="@id/projectTXT"
-        app:layout_constraintTop_toBottomOf="@id/projectTXT"
-        tools:text="baiana" />
+    android:layout_margin="8dp"
+   >
 
     <ImageView
         android:id="@+id/avatarIMG"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:background="@color/colorAccent"
+        android:layout_margin="6dp"
+        app:layout_constraintEnd_toStartOf="@id/infoContainerLL"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/projectTXT" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <LinearLayout
+        android:id="@+id/infoContainerLL"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/item_background_round_corners"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/avatarIMG"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/projectTXT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:textColor="#eeeeee"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Nome do projeto" />
+
+        <TextView
+            android:id="@+id/userTXT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_light"
+            android:maxLines="2"
+            android:paddingHorizontal="12dp"
+            android:paddingBottom="12dp"
+            android:textColor="#ececec"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/projectTXT"
+            app:layout_constraintTop_toBottomOf="@id/projectTXT"
+            tools:text="baiana" />
+    </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

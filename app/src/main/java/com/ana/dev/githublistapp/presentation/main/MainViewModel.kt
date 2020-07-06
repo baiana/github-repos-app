@@ -102,5 +102,10 @@ class MainViewModel : ViewModel(), KoinComponent {
         _fragmentProjectsStateLiveData.postValue(displaySelectedInfo(project))
     }
 
+    fun clearSelected() {
+        _fragmentProjectsStateLiveData.postValue(clear())
+
+    }
+
 
 }
