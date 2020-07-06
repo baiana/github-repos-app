@@ -20,7 +20,6 @@ class MainViewModel : ViewModel(), KoinComponent {
     private val _fragmentProjectsStateLiveData = MutableLiveData<MainViewState>()
     val fragmentProjectsStateLiveData: LiveData<MainViewState> get() = _fragmentProjectsStateLiveData
 
-
     init {
         _viewStateLiveData.value = MainViewState()
         _fragmentProjectsStateLiveData.value = MainViewState()
@@ -54,9 +53,6 @@ class MainViewModel : ViewModel(), KoinComponent {
             )
         })
 
-    private fun changeViewState(newState: MainViewState) {
-        _viewStateLiveData.postValue(newState)
-    }
 
     private fun searchWithAPI(query: String) {
         val currentList = fragmentProjectsStateLiveData.value?.projectList ?: ArrayList()
@@ -100,6 +96,15 @@ class MainViewModel : ViewModel(), KoinComponent {
     fun resetSearch() {
         val regularList = fragmentProjectsStateLiveData.value?.projectList ?: ArrayList()
         _fragmentProjectsStateLiveData.postValue(displayProjectList(regularList))
+    }
+
+    fun displayProjectInfo(project: Project) {
+        _fragmentProjectsStateLiveData.postValue(displaySelectedInfo(project))
+    }
+
+    fun clearSelected() {
+        _fragmentProjectsStateLiveData.postValue(clear())
+
     }
 
 

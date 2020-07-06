@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ana.dev.githublistapp.data.model.Project
 import com.ana.dev.githublistapp.databinding.FragmentProjectsBinding
+import com.ana.dev.githublistapp.presentation.main.MainActivity
 import com.ana.dev.githublistapp.presentation.main.MainViewModel
 import com.ana.dev.githublistapp.presentation.main.ProjectListAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -53,6 +54,10 @@ class ProjectsFragment : Fragment() {
                 it.projectList?.isNotEmpty() == true -> {
                     recyclerSetup(it.projectList)
                 }
+                it.selected != null -> {
+                    (activity as MainActivity).displayItemInfo(it.selected)
+                    viewModel.clearSelected()
+                }
 
             }
 
@@ -88,15 +93,20 @@ class ProjectsFragment : Fragment() {
             with(binding.projectsRV) {
                 this.layoutManager =
                     LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-                this.adapter =
-                    ProjectListAdapter(
-                        projects,
-                        resources
-                    )
+                this.adapter = ProjectListAdapter(projects).apply {
+                    detailsClickListener = object : ProjectListAdapter.OnProjectClickListener {
+                        override fun onClick(project: Project) {
+                            viewModel.displayProjectInfo(project)
+                        }
+
+                    }
+                }
+
             }
 
         } else {
             (binding.projectsRV.adapter as ProjectListAdapter).swap(projects)
+            binding.projectsRV.smoothScrollToPosition(0)
         }
     }
 

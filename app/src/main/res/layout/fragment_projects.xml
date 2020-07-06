@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context=".presentation.main.fragments.ProjectsFragment">
-
-
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -20,11 +19,12 @@
     <androidx.appcompat.widget.SearchView
         android:id="@+id/projectSV"
         android:layout_width="match_parent"
+        android:layout_margin="4dp"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:textCursorDrawable="@null"
-        app:iconifiedByDefault="true"
-        app:queryBackground="@null" />
+        style="@style/searchStyle"
+        android:background="@drawable/item_background_round_corners"
+       />
+
     <androidx.core.widget.ContentLoadingProgressBar
         android:id="@+id/loading"
         style="?android:attr/progressBarStyleLarge"
