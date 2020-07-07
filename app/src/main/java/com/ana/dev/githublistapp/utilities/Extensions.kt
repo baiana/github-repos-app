@@ -1,4 +1,4 @@
-package com.ana.dev.githublistapp.core
+package com.ana.dev.githublistapp.utilities
 
 import android.widget.ImageView
 import com.ana.dev.githublistapp.R

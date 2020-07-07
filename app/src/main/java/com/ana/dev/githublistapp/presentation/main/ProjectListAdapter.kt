@@ -1,14 +1,11 @@
 package com.ana.dev.githublistapp.presentation.main
 
-import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.ana.dev.githublistapp.core.loadWithPicasso
+import com.ana.dev.githublistapp.utilities.loadWithPicasso
 import com.ana.dev.githublistapp.data.model.Project
 import com.ana.dev.githublistapp.databinding.ProjectListItemBinding
-import com.squareup.picasso.Picasso
 
 class ProjectListAdapter(private var projects: ArrayList<Project>) :
     RecyclerView.Adapter<ProjectListAdapter.ProjectHolder>() {

@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.ana.dev.githublistapp.R
-import com.ana.dev.githublistapp.core.loadWithPicasso
+import com.ana.dev.githublistapp.utilities.loadWithPicasso
 import com.ana.dev.githublistapp.databinding.ActivityProjectInfoBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
