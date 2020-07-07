@@ -12,11 +12,11 @@
     <ImageView
         android:id="@+id/closeBTN"
         android:layout_width="wrap_content"
-        android:paddingEnd="24dp"
-        android:paddingBottom="24dp"
-        android:layout_marginBottom="4dp"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
+        android:layout_marginBottom="4dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="24dp"
         android:src="@drawable/ic_close_white" />
 
     <RelativeLayout
@@ -57,12 +57,12 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/projectTXT"
             android:layout_marginTop="24dp"
-            android:textStyle="bold"
             android:labelFor="@id/descriptionTXT"
             android:text="@string/repo_description"
             android:textAlignment="textStart"
             android:textColor="@color/colorPrimary"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/descriptionTXT"
@@ -71,10 +71,11 @@
             android:layout_below="@id/labelDescriptionTXT"
             android:layout_marginTop="12dp"
             android:ellipsize="end"
-            android:maxLines="12"
+            android:text="Esse repositório não possui descrição &#x1F926; "
             android:textAlignment="textStart"
             android:textColor="@color/colorPrimary"
             android:textSize="16sp"
+            tools:maxLines="10"
             tools:text="@tools:sample/lorem/random" />
 
         <Button

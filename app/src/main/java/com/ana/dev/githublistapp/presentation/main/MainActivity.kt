@@ -13,6 +13,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.ana.dev.githublistapp.databinding.ActivityMainBinding
 import com.ana.dev.githublistapp.presentation.projectInfo.ProjectInfoActivity
 import com.ana.dev.githublistapp.presentation.projectInfo.ProjectInfoViewModel
+import com.ana.dev.githublistapp.utilities.playLoading
+import com.ana.dev.githublistapp.utilities.stopLoading
 
 
 class MainActivity : AppCompatActivity() {
@@ -41,6 +43,7 @@ class MainActivity : AppCompatActivity() {
             }
         )
     }
+
 
     fun displayItemInfo(project: Project?) {
         project?.let {

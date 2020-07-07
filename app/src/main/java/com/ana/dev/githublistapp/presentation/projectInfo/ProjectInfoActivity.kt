@@ -1,8 +1,11 @@
 package com.ana.dev.githublistapp.presentation.projectInfo
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.AttributeSet
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.ana.dev.githublistapp.R
@@ -19,12 +22,15 @@ class ProjectInfoActivity : AppCompatActivity() {
             layoutInflater
         )
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         viewModelSetup()
-        binding.closeBTN.setOnClickListener { onBackPressed() }
+    }
+
+    override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
+        return super.onCreateView(name, context, attrs)
+
     }
 
     private fun viewModelSetup() {
@@ -43,6 +49,9 @@ class ProjectInfoActivity : AppCompatActivity() {
         })
 
         viewModel.displayProjectInfo(intent.getParcelableExtra(PROJECT))
+        binding.closeBTN.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun openExternalLink(url: String) {
@@ -64,6 +73,11 @@ class ProjectInfoActivity : AppCompatActivity() {
     private fun openUserProfile() {
         val url = resources.getString(R.string.github_url_x, viewModel.getUsername())
         openExternalLink(url)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
     }
 
     companion object {

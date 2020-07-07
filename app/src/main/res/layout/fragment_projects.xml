@@ -23,7 +23,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         android:background="@drawable/item_background_round_corners"
-        android:elevation="5dp" />
+        android:elevation="5dp"
+        app:iconifiedByDefault="false" />
 
 
     <ImageView

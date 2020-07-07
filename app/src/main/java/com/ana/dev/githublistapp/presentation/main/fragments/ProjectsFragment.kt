@@ -16,6 +16,7 @@ import com.ana.dev.githublistapp.presentation.main.MainViewModel
 import com.ana.dev.githublistapp.presentation.main.ProjectListAdapter
 import com.ana.dev.githublistapp.utilities.playLoading
 import com.ana.dev.githublistapp.utilities.stopLoading
+import org.koin.android.ext.android.bind
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProjectsFragment : Fragment() {
@@ -82,14 +83,18 @@ class ProjectsFragment : Fragment() {
     }
 
     private fun displayError(error: String) {
-        binding.loadingIMG.playLoading()
+        binding.loadingIMG.stopLoading()
         TODO("Not yet implemented")
     }
 
     private fun displayLoading() {
-        binding.loadingIMG.playLoading()
+     binding.loadingIMG.playLoading()
     }
 
+    private fun displayProjectInfo(project: Project) {
+        binding.loadingIMG.stopLoading()
+        viewModel.displayProjectInfo(project)
+    }
 
     private fun recyclerSetup(projects: ArrayList<Project>) {
         binding.loadingIMG.stopLoading()
@@ -100,7 +105,7 @@ class ProjectsFragment : Fragment() {
                 this.adapter = ProjectListAdapter(projects).apply {
                     detailsClickListener = object : ProjectListAdapter.OnProjectClickListener {
                         override fun onClick(project: Project) {
-                            viewModel.displayProjectInfo(project)
+                            displayProjectInfo(project)
                         }
 
                     }
@@ -133,9 +138,16 @@ class ProjectsFragment : Fragment() {
             })
 
             setOnCloseListener {
+                resetSearchView()
                 viewModel.resetSearch()
                 true
             }
         }
     }
+
+    private fun resetSearchView() {
+        binding.projectSV.setQuery(null, false)
+        binding.projectSV.clearFocus()
+    }
 }
+
