@@ -1,5 +1,5 @@
 
-## Github List App
+## GitFeed
 
 ## :arrow_forward: Como executar 
 
