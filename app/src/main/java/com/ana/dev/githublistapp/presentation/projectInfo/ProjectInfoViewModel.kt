@@ -8,19 +8,19 @@ import com.ana.dev.githublistapp.data.model.Project
 
 class ProjectInfoViewModel() : ViewModel() {
 
-    private val _projectInfo = MutableLiveData<Project>()
-    val projectInfoLiveData: LiveData<Project> get() = _projectInfo
+    private val _viewState = MutableLiveData<ProjectInfoViewState>()
+    val projectInfoLiveData: LiveData<ProjectInfoViewState> get() = _viewState
 
     fun displayProjectInfo(projectInfo: Project?) {
-        projectInfo?.let {
-            _projectInfo.postValue(projectInfo)
+        _viewState.postValue(projectInfo?.let {
+            setProjectInfo(projectInfo)
         } ?: run {
-            //todo fechar activity com erro
-        }
+            setErrorId(R.string.app_name)
+        })
     }
 
     fun getUsername(): String {
-        return projectInfoLiveData.value?.user?.name ?: ""
+        return projectInfoLiveData.value?.projectInfo?.user?.name ?: ""
     }
 
 }

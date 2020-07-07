@@ -30,14 +30,19 @@ class ProjectInfoActivity : AppCompatActivity() {
     private fun viewModelSetup() {
 //        viewModel
         viewModel.projectInfoLiveData.observe(this, Observer {
+            val repo = it.projectInfo
             with(binding) {
-                descriptionTXT.text = it.description
-                userTXT.text = it.user.name
-                projectTXT.text = it.name
-                avatarIMG.loadWithPicasso(it.user.pictureUrl)
-                if (it.url.isNotBlank()) {
-                    openProjectButtonCLickListener(it.url)
+                repo?.apply {
+
+                    descriptionTXT.text = description
+                    userTXT.text = user.name
+                    projectTXT.text = name
+                    avatarIMG.loadWithPicasso(user.pictureUrl)
+                    if (url.isNotBlank()) {
+                        openProjectButtonCLickListener(url)
+                    }
                 }
+
             }
 
         })
