@@ -1,5 +1,6 @@
 package com.ana.dev.githublistapp.presentation.main.fragments
 
+import android.graphics.drawable.AnimatedVectorDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +14,8 @@ import com.ana.dev.githublistapp.databinding.FragmentProjectsBinding
 import com.ana.dev.githublistapp.presentation.main.MainActivity
 import com.ana.dev.githublistapp.presentation.main.MainViewModel
 import com.ana.dev.githublistapp.presentation.main.ProjectListAdapter
+import com.ana.dev.githublistapp.utilities.playLoading
+import com.ana.dev.githublistapp.utilities.stopLoading
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProjectsFragment : Fragment() {
@@ -36,6 +39,7 @@ class ProjectsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         searchConfig()
+        displayLoading()
     }
 
     private fun setupViewModel() {
@@ -78,17 +82,17 @@ class ProjectsFragment : Fragment() {
     }
 
     private fun displayError(error: String) {
-        binding.loading.hide()
+        binding.loadingIMG.playLoading()
         TODO("Not yet implemented")
     }
 
     private fun displayLoading() {
-        binding.loading.show()
+        binding.loadingIMG.playLoading()
     }
 
 
     private fun recyclerSetup(projects: ArrayList<Project>) {
-        binding.loading.hide()
+        binding.loadingIMG.stopLoading()
         if (binding.projectsRV.adapter == null) {
             with(binding.projectsRV) {
                 this.layoutManager =

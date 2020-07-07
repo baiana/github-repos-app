@@ -9,9 +9,10 @@ class CustomErrorDialog(
     context: Context,
     errorCode: Int? = null, errorId: Int? = null, errorMessage: String? = null
 ) : AlertDialog(context) {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.dialog_payment_success)
+        setContentView(R.layout.custom_error_dialog_layout)
 
     }
 }

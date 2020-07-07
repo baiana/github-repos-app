@@ -25,13 +25,14 @@
         android:background="@drawable/item_background_round_corners"
         android:elevation="5dp" />
 
-    <androidx.core.widget.ContentLoadingProgressBar
-        android:id="@+id/loading"
-        style="?android:attr/progressBarStyleLarge"
+
+    <ImageView
+        android:id="@+id/loadingIMG"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:visibility="visible" />
+        android:layout_margin="128dp"
+        android:src="@drawable/loading_octocat" />
 
 
 </RelativeLayout>
