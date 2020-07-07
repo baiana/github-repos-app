@@ -3,8 +3,6 @@ package com.ana.dev.githublistapp.utilities
 import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
-import com.ana.dev.githublistapp.R
-import com.ana.dev.githublistapp.databinding.ActivityProjectInfoBinding
 import com.ana.dev.githublistapp.databinding.CustomErrorDialogLayoutBinding
 
 class CustomErrorDialog(

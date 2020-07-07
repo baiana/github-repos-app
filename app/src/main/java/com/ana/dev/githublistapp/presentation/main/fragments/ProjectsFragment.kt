@@ -1,6 +1,5 @@
 package com.ana.dev.githublistapp.presentation.main.fragments
 
-import android.graphics.drawable.AnimatedVectorDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,7 +14,6 @@ import com.ana.dev.githublistapp.presentation.main.MainActivity
 import com.ana.dev.githublistapp.presentation.main.MainViewModel
 import com.ana.dev.githublistapp.presentation.main.ProjectListAdapter
 import com.ana.dev.githublistapp.utilities.*
-import org.koin.android.ext.android.bind
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProjectsFragment : Fragment() {
@@ -48,8 +46,8 @@ class ProjectsFragment : Fragment() {
                 it.isLoading -> {
                     displayLoading()
                 }
-                it.error.isNotBlank() -> {
-                    displayError(it.error)
+                it.errorId != 0 -> {
+                    displayError(it.errorId)
                 }
 
                 it.searchData != null -> {
@@ -81,9 +79,9 @@ class ProjectsFragment : Fragment() {
 
     }
 
-    private fun displayError(error: String) {
+    private fun displayError(error: Int) {
         binding.loadingPB.gone()
-        activity?.displayError(error)
+        activity?.displayError(resources.getString(error))
     }
 
     private fun displayLoading() {

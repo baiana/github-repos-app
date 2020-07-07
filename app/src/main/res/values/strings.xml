@@ -1,8 +1,14 @@
 <resources>
     <string name="app_name">github list app</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="repo_description">Descrição do repositório:</string>
     <string name="visit_repo">Visitar Repositório</string>
     <string name="github_url_x">https://github.com/%s</string>
+    <string name="error_forbidden_401">	Não estou te reconhecendo &#x1F575;&#x1F3FE;\n tudo certo com a sua autenticação? </string>
+<!--   Não foi possível validar suas credencias-->
+    <string name="error_not_found_404">Esses não são os resultados que você procurando &#128680;</string>
+    <!--  Não foi possível encotrar os resultados para a sua pesquisa -->
+    <string name="generic_client_error">&#128680; Algo de errado não está certo &#128680;\n tente novamente </string>
+    <string name="error_try_again_449">Não foi dessa vez, você pode tentar novamente?</string>
+    <string name="error_server_500">\"Pedimos perdão pelo vacilo Estamos trabalhando para solucionar esse erro do nosso lado \"</string>
+    <!--   Não foi possível identificar o error, tente novamente-->
 </resources>

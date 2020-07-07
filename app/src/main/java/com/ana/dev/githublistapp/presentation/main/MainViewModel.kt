@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.ana.dev.githublistapp.data.model.*
 import com.ana.dev.githublistapp.data.repository.ProjectsRepository
 import com.ana.dev.githublistapp.data.response.ProjectResult
+import com.ana.dev.githublistapp.utilities.getErrorMessageByCode
 import kotlinx.coroutines.launch
 import org.koin.core.KoinComponent
 import org.koin.core.inject
@@ -36,10 +37,15 @@ class MainViewModel : ViewModel(), KoinComponent {
                         _fragmentProjectsStateLiveData.postValue(displayProjectList(convertedList))
                     }
                 } else {
-//                    todo tratamento de erro
+                    handleError(this.code())
                 }
             }
         }
+    }
+
+    private fun handleError(errorCode: Int) {
+        val errorId = getErrorMessageByCode(errorCode)
+        _fragmentProjectsStateLiveData.postValue(displayError(errorId))
     }
 
     private fun convertBodyToProjectList(list: List<ProjectResult>) =
@@ -68,9 +74,10 @@ class MainViewModel : ViewModel(), KoinComponent {
                         )
                     } ?: run {
                         //todo handle error lista nula
+
                     }
                 } else {
-
+                    handleError(this.code())
                 }
             }
         }

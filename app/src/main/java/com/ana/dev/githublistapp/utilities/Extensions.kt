@@ -40,13 +40,28 @@ fun View.gone() {
     this.visibility = View.GONE
 }
 
-fun Context.displayErrorWithFunction(message: String, tryAgainFun: () -> Unit){
-    CustomErrorDialog(this,errorMessage = message).displayDialogWithTryAgain(tryAgainFun)
+fun Context.displayErrorWithFunction(message: String, tryAgainFun: () -> Unit) {
+    CustomErrorDialog(this, errorMessage = message).displayDialogWithTryAgain(tryAgainFun)
 }
 
-fun Context.displayError(message: String){
-    CustomErrorDialog(this,errorMessage = message).displayDialog()
+fun Context.displayError(message: String) {
+    CustomErrorDialog(this, errorMessage = message).displayDialog()
 }
+
+fun getErrorMessageByCode(code: Int) =
+    when (code) {
+        //Client side error
+        401 -> R.string.error_forbidden_401
+        404 -> R.string.error_not_found_404
+        449 -> R.string.error_try_again_449
+        in 400..499 -> R.string.generic_client_error
+        //server side error
+        in 500..599 -> {
+            R.string.error_server_500
+        }
+        else -> R.string.generic_client_error
+    }
+
 
 fun ImageView.stopLoading() {
 //    if (this.drawable is AnimatedVectorDrawable) {
