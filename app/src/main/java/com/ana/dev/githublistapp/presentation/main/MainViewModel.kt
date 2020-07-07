@@ -14,19 +14,16 @@ import org.koin.core.inject
 class MainViewModel : ViewModel(), KoinComponent {
 
     private val repository: ProjectsRepository by inject()
-    private val _viewStateLiveData = MutableLiveData<MainViewState>()
-    val stateLiveData: LiveData<MainViewState> get() = _viewStateLiveData
 
     private val _fragmentProjectsStateLiveData = MutableLiveData<MainViewState>()
     val fragmentProjectsStateLiveData: LiveData<MainViewState> get() = _fragmentProjectsStateLiveData
 
     init {
-        _viewStateLiveData.value = MainViewState()
         _fragmentProjectsStateLiveData.value = MainViewState()
     }
 
     fun getProjectsList() {
-        _viewStateLiveData.postValue(startLoading())
+        _fragmentProjectsStateLiveData.postValue(startLoading())
         viewModelScope.launch {
             val result = repository.getProjectsList()
             with(result) {
@@ -103,8 +100,11 @@ class MainViewModel : ViewModel(), KoinComponent {
     }
 
     fun clearSelected() {
-        _fragmentProjectsStateLiveData.postValue(clear())
-
+        _fragmentProjectsStateLiveData.postValue(
+            displayProjectList(
+                fragmentProjectsStateLiveData.value?.projectList ?: ArrayList()
+            )
+        )
     }
 
 

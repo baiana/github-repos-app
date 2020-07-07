@@ -27,19 +27,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        val navController = Navigation.findNavController(this, R.id.navHost)
-        observeSelected()
     }
 
-    private fun observeSelected() {
-        viewModel.stateLiveData.observe(
-            this, Observer {
-                it.selected?.let {
-                    displayItemInfo(it)
-                }
-            }
-        )
-    }
 
      fun displayItemInfo(project: Project?) {
         project?.let {
