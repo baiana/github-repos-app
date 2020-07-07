@@ -1,11 +1,13 @@
 
+
 ## GitFeed
 
 ## :arrow_forward: Como executar 
 
- 1. Gerar [personal access token](https://developer.github.com/v3/auth/#via-oauth-and-personal-access-tokens) e substituir o valor **api_token** no arquivo **gradle.properties**;
- 2. sincronizar o gradle (*sync now*);
- 3. Executar projeto a partir da branch master;
+ 1. Gerar [personal access token](https://developer.github.com/v3/auth/#via-oauth-and-personal-access-tokens) com acesso a leitura de repositórios e usuários.
+ 2.  Substituir o valor em  **api_token** no arquivo **gradle.properties** pelo token gerado;
+ 3. sincronizar o gradle (*sync now*);
+ 4. Executar projeto a partir da branch master;
 
 
 ## :computer: Tecnologias utilizadas
@@ -17,6 +19,7 @@
  - CircleImageView;
  - Picasso, Retrofit e Moshi;
  - MocK; 
+ - Shapeshifter (tecnologia externa não importada ao projeto);
 
 **Linguagem**: Kotlin
 
@@ -45,6 +48,7 @@
 Já possuia familiaridade com o retrofit e Picasso mas decidi experimentar o Moshi após ler uma [tread muito interessante no reddit](https://www.reddit.com/r/androiddev/comments/684flw/why_use_moshi_over_gson/) sobre as suas vantagens em relação ao Gson (minha primeira escolha) e não me arrependi! A implementação foi bem mais rápida e fluida, principalmente com a facilidade das annotations.
 - Já o MockK e Koin foram escolhidos pelas otimizações focadas em Kotlin, documentação acessível e curva de aprendizado reduzida em comparação ao Dagger e Mockito (escolhas mais tradicionais para DI e mock). 
 - Esses mesmos fatores também se aplicam para a escolha do Coroutines (que é desenvolvida pela Jetbrains mas ainda precisa ser importada ao projeto).
+- Também utilizei o [shapeshifter](https://shapeshifter.design/) para criar o loading através da animação e conversão de um svg estático em um AnimatedVectorDrawable. Esse processo foi minha primeira interação com a plataforma (e também foi uma experiência muito boa).
 - E por fim, acredito que uma das grandes frustações do dia a dia de todo Dev. Android e a falta de flexibilidade para modificar o formato de ImageViews, pra isso utilizei a biblioteca CircleImageView para tornar os avatares mais parecidos com a UI do feed do github (a qual me inspirei para elaborar os layouts).
 
 ## :interrobang: Problemáticas encontradas 
