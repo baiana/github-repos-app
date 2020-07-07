@@ -5,7 +5,7 @@
 
  1. Gerar [personal access token](https://developer.github.com/v3/auth/#via-oauth-and-personal-access-tokens) e substituir o valor **api_token** no arquivo **gradle.properties**;
  2. sincronizar o gradle (*sync now*);
- 3. Executar projeto;
+ 3. Executar projeto a partir da branch master;
 
 
 ## :computer: Tecnologias utilizadas
@@ -40,13 +40,18 @@
  - Uma decisão simples mas importante de ser elucidada foi a de substituir o nome repository por projects ao utilizar objetos que representem os repositórios do github. Como repository é uma palavra de uso comum na arquitetura que escolhi, decidi substituir para evitar conflitos na leitura. 
 
 **Escolha das bibliotecas de terceiros:**
-As bibliotecas da Square (retrofit, moshi e picasso) são open-source e possuem uma certa confiabilidade dentro da comunidade Android devido as suas constantes atualizações e usos em diversas aplicações comerciais. 
+
+- As bibliotecas da Square (retrofit, moshi e picasso) são open-source e possuem uma certa confiabilidade dentro da comunidade Android devido as suas constantes atualizações e usos em diversas aplicações comerciais. 
 Já possuia familiaridade com o retrofit e Picasso mas decidi experimentar o Moshi após ler uma [tread muito interessante no reddit](https://www.reddit.com/r/androiddev/comments/684flw/why_use_moshi_over_gson/) sobre as suas vantagens em relação ao Gson (minha primeira escolha) e não me arrependi! A implementação foi bem mais rápida e fluida, principalmente com a facilidade das annotations.
-Já o MockK e Koin foram escolhidos pelas otimizações focadas em Kotlin, documentação acessível e curva de aprendizado reduzida em comparação ao Dagger e Mockito (escolhas mais tradicionais para DI e mock). 
-Esses mesmos fatores também se aplicam para a escolha do Coroutines (que é desenvolvida pela Jetbrains mas ainda precisa ser importada ao projeto).
-E por fim, acredito que uma das grandes frustações de todo Dev. Android e a falta de flexibilidade para modificar o formato de ImageViews, pra isso utilizei a biblioteca CircleImageView para tornar os avatares mais parecidos com a UI do feed do github (a qual me inspirei para elaborar os layouts).
+- Já o MockK e Koin foram escolhidos pelas otimizações focadas em Kotlin, documentação acessível e curva de aprendizado reduzida em comparação ao Dagger e Mockito (escolhas mais tradicionais para DI e mock). 
+- Esses mesmos fatores também se aplicam para a escolha do Coroutines (que é desenvolvida pela Jetbrains mas ainda precisa ser importada ao projeto).
+- E por fim, acredito que uma das grandes frustações do dia a dia de todo Dev. Android e a falta de flexibilidade para modificar o formato de ImageViews, pra isso utilizei a biblioteca CircleImageView para tornar os avatares mais parecidos com a UI do feed do github (a qual me inspirei para elaborar os layouts).
 
 ## :interrobang: Problemáticas encontradas 
 
  - Ao fazer um commit com um personal token, ele é automaticamente desativado pelo github, necessitando assim da configuração inicial colocada nessa documentação.
  - Ao utilizar a API sem autenticação, as chamadas são bloqueadas após 60 requests por hora ( a autenticação aumenta esse limite para 5000). 
+
+## :thought_balloon: Será que esqueci alguma coisa? 
+Deixei algumas branches de features e testes para manter o histórico, mas a versão mais estável está na main branch (master).
+Caso tenha alguma dúvida, sugestão ou melhoria é só falar! (ou abrir um PR).
