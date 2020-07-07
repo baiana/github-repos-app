@@ -13,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".presentation.projectInfo.ProjectInfoActivity"></activity>
-        <activity android:name=".presentation.main.MainActivity">
+        <activity
+            android:name=".presentation.main.MainActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

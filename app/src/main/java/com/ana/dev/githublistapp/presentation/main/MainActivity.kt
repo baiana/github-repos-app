@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         val navController = Navigation.findNavController(this, R.id.navHost)
@@ -41,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-     fun displayItemInfo(project: Project?) {
+    fun displayItemInfo(project: Project?) {
         project?.let {
             val intent = Intent(this, ProjectInfoActivity::class.java)
             intent.putExtra(ProjectInfoActivity.PROJECT, project)
