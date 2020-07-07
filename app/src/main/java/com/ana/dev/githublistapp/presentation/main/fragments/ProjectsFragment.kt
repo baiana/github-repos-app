@@ -14,8 +14,7 @@ import com.ana.dev.githublistapp.databinding.FragmentProjectsBinding
 import com.ana.dev.githublistapp.presentation.main.MainActivity
 import com.ana.dev.githublistapp.presentation.main.MainViewModel
 import com.ana.dev.githublistapp.presentation.main.ProjectListAdapter
-import com.ana.dev.githublistapp.utilities.playLoading
-import com.ana.dev.githublistapp.utilities.stopLoading
+import com.ana.dev.githublistapp.utilities.*
 import org.koin.android.ext.android.bind
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -83,21 +82,21 @@ class ProjectsFragment : Fragment() {
     }
 
     private fun displayError(error: String) {
-        binding.loadingIMG.stopLoading()
-        TODO("Not yet implemented")
+        binding.loadingPB.gone()
+        activity?.displayError(error)
     }
 
     private fun displayLoading() {
-     binding.loadingIMG.playLoading()
+        binding.loadingPB.visible()
     }
 
     private fun displayProjectInfo(project: Project) {
-        binding.loadingIMG.stopLoading()
+        binding.loadingPB.gone()
         viewModel.displayProjectInfo(project)
     }
 
     private fun recyclerSetup(projects: ArrayList<Project>) {
-        binding.loadingIMG.stopLoading()
+        binding.loadingPB.gone()
         if (binding.projectsRV.adapter == null) {
             with(binding.projectsRV) {
                 this.layoutManager =

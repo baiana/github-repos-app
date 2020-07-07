@@ -1,5 +1,6 @@
 package com.ana.dev.githublistapp.utilities
 
+import android.content.Context
 import android.graphics.drawable.Animatable2
 import android.graphics.drawable.AnimatedVectorDrawable
 import android.graphics.drawable.Drawable
@@ -19,21 +20,16 @@ fun ImageView.loadWithPicasso(url: String) {
 }
 
 fun ImageView.playLoading() {
-    if (this.drawable is AnimatedVectorDrawable) {
-        val loading = this.drawable as AnimatedVectorDrawable
-        loading.apply {
-            registerAnimationCallback(object : Animatable2.AnimationCallback() {
-                override fun onAnimationEnd(drawable: Drawable?) {
-                    loading.start()
-                }
-            })
-            start()
-        }
-        this.visible()
-    } else {
-        Log.e("Error/animation", "Imageview não é animação")
-    }
-
+//    val avd = AnimatedVectorDrawableCompat.create(this.context,
+//        R.drawable.loading_octocat)
+//    avd?.registerAnimationCallback(object :Animatable2Compat.AnimationCallback() {
+//        override fun onAnimationEnd(drawable: Drawable?) {
+//            avd.start()
+//        }
+//    })
+//    this.apply {
+//        setImageDrawable(avd)
+//    }
 }
 
 fun View.visible() {
@@ -44,16 +40,24 @@ fun View.gone() {
     this.visibility = View.GONE
 }
 
+fun Context.displayErrorWithFunction(message: String, tryAgainFun: () -> Unit){
+    CustomErrorDialog(this,errorMessage = message).displayDialogWithTryAgain(tryAgainFun)
+}
+
+fun Context.displayError(message: String){
+    CustomErrorDialog(this,errorMessage = message).displayDialog()
+}
+
 fun ImageView.stopLoading() {
-    if (this.drawable is AnimatedVectorDrawable) {
-        try {
-            val loading = this.drawable as AnimatedVectorDrawable
-            loading.stop()
-            this.gone()
-        } catch (e: Exception) {
-            Log.e("Exception", e.message ?: "Exception ao parar o loading")
-        }
-    } else {
-        Log.e("Error/animation", "Imageview não é animação")
-    }
+//    if (this.drawable is AnimatedVectorDrawable) {
+//        try {
+//            val loading = this.drawable as AnimatedVectorDrawable
+//            loading.stop()
+//            this.gone()
+//        } catch (e: Exception) {
+//            Log.e("Exception", e.message ?: "Exception ao parar o loading")
+//        }
+//    } else {
+//        Log.e("Error/animation", "Imageview não é animação")
+//    }
 }

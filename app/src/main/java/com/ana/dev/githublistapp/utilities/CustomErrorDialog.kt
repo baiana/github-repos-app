@@ -4,15 +4,36 @@ import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import com.ana.dev.githublistapp.R
+import com.ana.dev.githublistapp.databinding.ActivityProjectInfoBinding
+import com.ana.dev.githublistapp.databinding.CustomErrorDialogLayoutBinding
 
 class CustomErrorDialog(
-    context: Context,
-    errorCode: Int? = null, errorId: Int? = null, errorMessage: String? = null
+    context: Context, val errorMessage: String
 ) : AlertDialog(context) {
+
+    private val binding: CustomErrorDialogLayoutBinding by lazy(LazyThreadSafetyMode.NONE) {
+        CustomErrorDialogLayoutBinding.inflate(
+            layoutInflater
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.custom_error_dialog_layout)
+        setContentView(binding.root)
+        binding.errorTXT.text = errorMessage
+    }
 
+
+    fun displayDialog() {
+        binding.tryAgainBTN.gone()
+        this.show()
+    }
+
+    fun displayDialogWithTryAgain(tryAgainFun: () -> Unit) {
+        binding.tryAgainBTN.setOnClickListener {
+            dismiss()
+            tryAgainFun()
+        }
+        this.show()
     }
 }
