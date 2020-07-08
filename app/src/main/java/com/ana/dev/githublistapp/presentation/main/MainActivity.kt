@@ -12,7 +12,6 @@ import com.ana.dev.githublistapp.databinding.ActivityMainBinding
 import com.ana.dev.githublistapp.presentation.projectInfo.ProjectInfoActivity
 
 class MainActivity : AppCompatActivity() {
-    private val viewModel: MainViewModel by viewModel()
 
     private val binding by lazy(LazyThreadSafetyMode.NONE) {
         ActivityMainBinding.inflate(

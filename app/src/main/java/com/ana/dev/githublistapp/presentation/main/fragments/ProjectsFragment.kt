@@ -61,14 +61,18 @@ class ProjectsFragment : Fragment() {
                     recyclerSetup(it.projectList)
                 }
                 it.selected != null -> {
-                    (activity as MainActivity).displayItemInfo(it.selected)
-                    viewModel.clearSelected()
+                    openProjectDetails(it.selected)
                 }
 
             }
 
         })
         viewModel.getProjectsList()
+    }
+
+    private fun openProjectDetails(project: Project) {
+        (activity as MainActivity).displayItemInfo(project)
+        viewModel.clearSelected()
     }
 
     private fun handleSearchResult(searchData: ArrayList<Project>) {
@@ -99,9 +103,6 @@ class ProjectsFragment : Fragment() {
         binding.loadingPB.gone()
     }
 
-    private fun displayProjectInfo(project: Project) {
-        viewModel.displayProjectInfo(project)
-    }
 
     private fun recyclerSetup(projects: ArrayList<Project>) {
         if (binding.projectsRV.adapter == null) {
@@ -111,7 +112,7 @@ class ProjectsFragment : Fragment() {
                 this.adapter = ProjectListAdapter(projects, resources).apply {
                     detailsClickListener = object : ProjectListAdapter.OnProjectClickListener {
                         override fun onClick(project: Project) {
-                            displayProjectInfo(project)
+                            viewModel.displayProjectInfo(project)
                         }
                     }
                 }

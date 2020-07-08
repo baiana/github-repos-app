@@ -11,6 +11,9 @@ import android.widget.ImageView
 import androidx.vectordrawable.graphics.drawable.Animatable2Compat
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import com.ana.dev.githublistapp.R
+import com.ana.dev.githublistapp.data.model.Project
+import com.ana.dev.githublistapp.data.model.User
+import com.ana.dev.githublistapp.data.response.ProjectResult
 import com.squareup.picasso.Picasso
 import java.lang.Exception
 import kotlin.math.log
@@ -35,6 +38,18 @@ fun View.invisible() {
 fun Context.displayErrorWithFunction(message: String, tryAgainFun: () -> Unit) {
     CustomErrorDialog(this, errorMessage = message).displayDialogWithTryAgain(tryAgainFun)
 }
+
+ fun List<ProjectResult>.convertToProjectArray() =
+    ArrayList(this.map {
+        Project(
+            it.id,
+            it.name,
+            User(it.user.username, it.user.pictureLink),
+            it.description ?: "",
+            it.url
+        )
+    })
+
 
 fun Context.displayError(message: String) {
     CustomErrorDialog(this, errorMessage = message).displayDialog()
