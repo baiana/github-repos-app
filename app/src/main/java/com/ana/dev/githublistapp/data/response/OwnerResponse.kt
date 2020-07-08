@@ -5,11 +5,11 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class OwnerResponse(
-    val id:String,
+    val id: String,
     @Json(name = "login")
-    val username:String,
+    val username: String,
     @Json(name = "avatar_url")
-    val pictureLink:String,
+    val pictureLink: String,
     @Json(name = "url")
-    val profileLink:String
+    val profileLink: String
 )

@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.ana.dev.githublistapp.R
 import com.ana.dev.githublistapp.data.model.Project
 
-class ProjectInfoViewModel() : ViewModel() {
+class ProjectInfoViewModel : ViewModel() {
 
     private val _viewState = MutableLiveData<ProjectInfoViewState>()
     val projectInfoLiveData: LiveData<ProjectInfoViewState> get() = _viewState
@@ -22,5 +22,4 @@ class ProjectInfoViewModel() : ViewModel() {
     fun getUsername(): String {
         return projectInfoLiveData.value?.projectInfo?.user?.name ?: ""
     }
-
 }

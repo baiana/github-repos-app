@@ -1,13 +1,20 @@
 package com.ana.dev.githublistapp.presentation.projectInfo
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.AttributeSet
+import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.ana.dev.githublistapp.R
-import com.ana.dev.githublistapp.core.loadWithPicasso
+import com.ana.dev.githublistapp.utilities.loadWithPicasso
 import com.ana.dev.githublistapp.databinding.ActivityProjectInfoBinding
+import com.ana.dev.githublistapp.utilities.CustomErrorDialog
+import com.ana.dev.githublistapp.utilities.displayError
+import com.ana.dev.githublistapp.utilities.displayErrorWithFunction
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -24,16 +31,13 @@ class ProjectInfoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         viewModelSetup()
-        binding.closeBTN.setOnClickListener { onBackPressed() }
     }
 
     private fun viewModelSetup() {
-//        viewModel
         viewModel.projectInfoLiveData.observe(this, Observer {
             val repo = it.projectInfo
             with(binding) {
                 repo?.apply {
-
                     descriptionTXT.text = description
                     userTXT.text = user.name
                     projectTXT.text = name
@@ -42,12 +46,11 @@ class ProjectInfoActivity : AppCompatActivity() {
                         openProjectButtonCLickListener(url)
                     }
                 }
-
             }
-
         })
 
         viewModel.displayProjectInfo(intent.getParcelableExtra(PROJECT))
+        binding.closeBTN.setOnClickListener { onBackPressed() }
     }
 
     private fun openExternalLink(url: String) {
