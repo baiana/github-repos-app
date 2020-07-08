@@ -116,13 +116,16 @@ class MainViewModelTest : KoinTest {
     //searchProjectsByName() tests
     @Test
     fun `searchProjectsByName() should return search result as list, if called with valid query`() {
+        // Given
         val slots = mutableListOf<MainViewState>()
-
         every { responseSearch.isSuccessful } returns true
         every { responseSearch.body() } returns SearchResult(4, getMockProjectResultList())
 
+        //When
         viewModel.searchProjectsByName("project")
 
+        //Then
+        //Check if search data is returned on the final state
         verify(exactly = 3) { stateObserver.onChanged(capture(slots)) }
         val (_, _, result) = slots
 
@@ -131,11 +134,16 @@ class MainViewModelTest : KoinTest {
 
     @Test
     fun `searchProjectsByName() should return current project list, if called with blank query`() {
+        // Given
         val slots = mutableListOf<MainViewState>()
         every { viewModel.fragmentProjectsStateLiveData.value?.projectList } returns getMockProjectArray()
 
+        //When
+        // Query is blank
         viewModel.searchProjectsByName("")
 
+        //Then
+        // if resetSearch is called, searchData should be null and projectList will not be empty
         verify(exactly = 2) { stateObserver.onChanged(capture(slots)) }
         val (_, result) = slots
 
@@ -145,13 +153,18 @@ class MainViewModelTest : KoinTest {
 
     @Test
     fun `searchProjectsByName() should return error when api call failed`() {
+        //Given
         val slots = mutableListOf<MainViewState>()
         val errorCode = 404 //Not Found
         every { responseSearch.isSuccessful } returns false
         every { responseSearch.code() } returns errorCode
 
+        //When
+        //a non blank query is sent
         viewModel.searchProjectsByName("failed")
 
+        //Then
+        //slots correspond to initial state, loading and error
         verify(exactly = 3) { stateObserver.onChanged(capture(slots)) }
         val (_, _, data) = slots
         assertEquals(data.errorId, R.string.error_not_found_404)
@@ -160,14 +173,17 @@ class MainViewModelTest : KoinTest {
     //resetSearch() tests
     @Test
     fun `resetSearch() should display current project list when regular list is not empty`() {
+    //Given
         val slots = mutableListOf<MainViewState>()
         every { viewModel.fragmentProjectsStateLiveData.value?.isLoading } returns true
         every { viewModel.fragmentProjectsStateLiveData.value?.projectList } returns arrayListOf(
             Project("id", "name", User("username", "dwwwdw"), "dwdd", "wdfwsdf")
         )
 
+        //When
         viewModel.resetSearch()
 
+        //Then
         verify(exactly = 2) { stateObserver.onChanged(capture(slots)) }
 
         val (_, final) = slots
@@ -191,12 +207,15 @@ class MainViewModelTest : KoinTest {
     //clearSelected() tests
     @Test
     fun `clearSelected() should change viewState value to displayProjectList`() {
+        //Given
         val slots = mutableListOf<MainViewState>()
         every { viewModel.fragmentProjectsStateLiveData.value?.selected } returns mockk()
         every { viewModel.fragmentProjectsStateLiveData.value?.projectList } returns getMockProjectArray()
-
+        //When
+        //cleaSelected call displayProjectList
         viewModel.clearSelected()
 
+        //Then
         verify(exactly = 2) { stateObserver.onChanged(capture(slots)) }
         val (_, cleared) = slots
         assertNull(cleared.selected)
@@ -207,10 +226,13 @@ class MainViewModelTest : KoinTest {
 
     @Test
     fun `displayProjectInfo() should display info passed as paramether to viewState as selected `() {
+        //Given
         val slots = mutableListOf<MainViewState>()
-
+        //When
         viewModel.displayProjectInfo(mockk())
 
+        //Then
+        //ViewState should return selected
         verify(exactly = 2) {
             stateObserver.onChanged(capture(slots))
         }
