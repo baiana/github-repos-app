@@ -74,7 +74,7 @@ class MainViewModel : ViewModel(), KoinComponent {
     }
 
     fun searchProjectsByName(query: String, submitted: Boolean = false) {
-        if (query.isNotBlank() && (submitted || query.length > 4)) {
+        if (query.isNotBlank() && (submitted || query.length > 3)) {
             searchWithAPI(query)
         } else {
             resetSearch()
