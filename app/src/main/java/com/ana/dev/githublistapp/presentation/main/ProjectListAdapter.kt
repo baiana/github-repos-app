@@ -10,9 +10,10 @@ import com.ana.dev.githublistapp.data.model.Project
 import com.ana.dev.githublistapp.databinding.ProjectListItemBinding
 import com.squareup.picasso.Picasso
 
-class ProjectListAdapter(val projects: ArrayList<Project>, val resources: Resources?) :
+class ProjectListAdapter(private var projects: ArrayList<Project>) :
     RecyclerView.Adapter<ProjectListAdapter.ProjectHolder>() {
 
+    var detailsClickListener: OnProjectClickListener? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProjectHolder {
         val binding =
             ProjectListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -23,18 +24,32 @@ class ProjectListAdapter(val projects: ArrayList<Project>, val resources: Resour
 
     override fun onBindViewHolder(holder: ProjectHolder, position: Int) {
         val repoItem = projects[position]
-        holder.bind(repoItem)
+        holder.bind(repoItem, detailsClickListener)
     }
 
     class ProjectHolder(private val binding: ProjectListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(repo: Project) {
+
+
+        fun bind(repo: Project, detailsClickListener: OnProjectClickListener?) {
             with(binding) {
-                projectTXT.text = repo.name
-                userTXT.text = repo.user.name
-                avatarIMG.loadWithPicasso(repo.url)
+                projectTXT.text = "${repo.user.name}/${repo.name}"
+                userTXT.text = repo.description
+                avatarIMG.loadWithPicasso(repo.user.pictureUrl)
+                holderCL.setOnClickListener {
+                    detailsClickListener?.onClick(repo)
+                }
             }
         }
+    }
+
+    fun swap(projectsList: ArrayList<Project>) {
+        this.projects = projectsList
+        notifyDataSetChanged()
+    }
+
+    interface OnProjectClickListener {
+        fun onClick(project: Project)
     }
 
 

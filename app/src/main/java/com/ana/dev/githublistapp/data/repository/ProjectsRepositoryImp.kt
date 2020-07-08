@@ -2,6 +2,7 @@ package com.ana.dev.githublistapp.data.repository
 
 import com.ana.dev.githublistapp.core.GithubServices
 import com.ana.dev.githublistapp.data.response.ProjectResult
+import com.ana.dev.githublistapp.data.response.SearchResult
 import org.koin.java.KoinJavaComponent.inject
 import retrofit2.Response
 
@@ -11,7 +12,7 @@ class ProjectsRepositoryImp() : ProjectsRepository {
         GithubServices::class.java)
 
     override suspend fun getProjectsList(): Response<List<ProjectResult>> = API.listProjects()
-    override suspend fun searchProjectByName(name:String): Response<List<ProjectResult>> = API.searchProjects(name)
+    override suspend fun searchProjectByName(name:String): Response<SearchResult> = API.searchProjects(name)
 
 
 }

@@ -10,5 +10,6 @@ data class ProjectResult(
     @Json(name = "owner")
     val user: OwnerResponse,
     val description: String? = "",
+    @Json(name= "html_url")
     val url: String
 )

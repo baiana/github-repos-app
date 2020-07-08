@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".presentation.projectInfo.ProjectInfoActivity">
+
+    <ImageView
+        android:id="@+id/closeBTN"
+        android:layout_width="wrap_content"
+        android:paddingEnd="24dp"
+        android:paddingBottom="24dp"
+        android:layout_marginBottom="4dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:src="@drawable/ic_close_white" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_corners_white"
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/repositoryIMG"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignTop="@id/projectTXT"
+            android:layout_alignBottom="@id/projectTXT"
+            android:baselineAlignBottom="true"
+            android:padding="6dp"
+            android:src="@drawable/ic_repository" />
+
+        <TextView
+            android:id="@+id/projectTXT"
+            style="@style/itemTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_toEndOf="@id/repositoryIMG"
+            android:paddingEnd="12dp"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorPrimary"
+            android:textSize="24sp"
+            tools:text="baiana / GithubListApp" />
+
+        <TextView
+            android:id="@+id/labelDescriptionTXT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/projectTXT"
+            android:layout_marginTop="24dp"
+            android:textStyle="bold"
+            android:labelFor="@id/descriptionTXT"
+            android:text="@string/repo_description"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/descriptionTXT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/labelDescriptionTXT"
+            android:layout_marginTop="12dp"
+            android:ellipsize="end"
+            android:maxLines="12"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
+            tools:text="@tools:sample/lorem/random" />
+
+        <Button
+            android:id="@+id/openProjectBTN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/descriptionTXT"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/green_round_corners"
+            android:padding="8dp"
+            android:text="@string/visit_repo"
+            android:textAllCaps="false"
+            android:textColor="@color/eggshell_white"
+            android:textSize="12dp" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/userInfoLL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/round_corners_white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/avatarIMG"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            tools:src="@drawable/ic_user_place_holder" />
+
+        <TextView
+            android:id="@+id/userTXT"
+            style="@style/itemTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_toEndOf="@id/repositoryIMG"
+            android:paddingEnd="12dp"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"
+            tools:text="/@baiana" />
+
+
+    </LinearLayout>
+
+</LinearLayout>
