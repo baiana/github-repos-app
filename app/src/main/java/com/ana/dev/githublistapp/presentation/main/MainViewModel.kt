@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.ana.dev.githublistapp.data.model.*
 import com.ana.dev.githublistapp.data.repository.ProjectsRepository
 import com.ana.dev.githublistapp.data.response.ProjectResult
+import com.ana.dev.githublistapp.utilities.getErrorMessageByCode
 import kotlinx.coroutines.launch
 import org.koin.core.KoinComponent
 import org.koin.core.inject
@@ -33,10 +34,15 @@ class MainViewModel : ViewModel(), KoinComponent {
                         _fragmentProjectsStateLiveData.postValue(displayProjectList(convertedList))
                     }
                 } else {
-//                    todo tratamento de erro
+                    handleError(this.code())
                 }
             }
         }
+    }
+
+    private fun handleError(errorCode: Int) {
+        val errorId = getErrorMessageByCode(errorCode)
+        _fragmentProjectsStateLiveData.postValue(displayError(errorId))
     }
 
     private fun convertBodyToProjectList(list: List<ProjectResult>) =
@@ -64,10 +70,15 @@ class MainViewModel : ViewModel(), KoinComponent {
                             )
                         )
                     } ?: run {
-                        //todo handle error lista nula
+                        _fragmentProjectsStateLiveData.postValue(
+                            displaySearchResult(
+                                ArrayList(),
+                                currentList
+                            )
+                        )
                     }
                 } else {
-
+                    handleError(this.code())
                 }
             }
         }
@@ -92,7 +103,11 @@ class MainViewModel : ViewModel(), KoinComponent {
 
     fun resetSearch() {
         val regularList = fragmentProjectsStateLiveData.value?.projectList ?: ArrayList()
-        _fragmentProjectsStateLiveData.postValue(displayProjectList(regularList))
+        if (regularList.size == 0) {
+            getProjectsList()
+        } else {
+            _fragmentProjectsStateLiveData.postValue(displayProjectList(regularList))
+        }
     }
 
     fun displayProjectInfo(project: Project) {

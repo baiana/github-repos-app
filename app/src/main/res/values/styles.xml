@@ -25,6 +25,10 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="SplashTheme" parent="AppTheme">
+        <item name="android:windowBackground">@layout/splash_screen_layout</item>
+    </style>
+
     <style name="searchStyle" parent="Widget.AppCompat.SearchView">
         <item name="android:editTextColor">@color/eggshell_white</item>
         <item name="queryBackground">@null</item>
