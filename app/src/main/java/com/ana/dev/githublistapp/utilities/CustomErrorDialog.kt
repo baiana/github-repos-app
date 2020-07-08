@@ -28,9 +28,13 @@ class CustomErrorDialog(
     }
 
     fun displayDialogWithTryAgain(tryAgainFun: () -> Unit) {
-        binding.tryAgainBTN.setOnClickListener {
-            dismiss()
-            tryAgainFun()
+        binding.tryAgainBTN.apply {
+            setOnClickListener {
+                dismiss()
+                tryAgainFun()
+            }
+            visible()
+
         }
         this.show()
     }

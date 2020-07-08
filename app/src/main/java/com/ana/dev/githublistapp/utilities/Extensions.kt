@@ -40,6 +40,10 @@ fun View.gone() {
     this.visibility = View.GONE
 }
 
+fun View.invisible() {
+    this.visibility = View.INVISIBLE
+}
+
 fun Context.displayErrorWithFunction(message: String, tryAgainFun: () -> Unit) {
     CustomErrorDialog(this, errorMessage = message).displayDialogWithTryAgain(tryAgainFun)
 }
