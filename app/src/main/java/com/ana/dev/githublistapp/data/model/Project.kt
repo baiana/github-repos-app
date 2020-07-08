@@ -10,4 +10,4 @@ data class Project(
     val user: User,
     val description: String,
     val url: String
-): Parcelable
+) : Parcelable

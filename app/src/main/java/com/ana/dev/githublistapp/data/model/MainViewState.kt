@@ -23,5 +23,4 @@ fun MainViewModel.startLoading(currentList: ArrayList<Project>? = null) =
 fun MainViewModel.displaySelectedInfo(project: Project) =
     MainViewState(selected = project)
 
-fun MainViewModel.clear() = MainViewState()
 fun MainViewModel.displayError(errorId: Int) = MainViewState(isLoading = false, errorId = errorId)

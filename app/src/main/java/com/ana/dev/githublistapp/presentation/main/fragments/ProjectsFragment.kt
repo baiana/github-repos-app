@@ -1,6 +1,5 @@
 package com.ana.dev.githublistapp.presentation.main.fragments
 
-import android.graphics.drawable.AnimatedVectorDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -39,7 +38,6 @@ class ProjectsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         searchConfig()
-        displayLoading()
     }
 
     private fun setupViewModel() {

@@ -1,13 +1,10 @@
-package com.ana.dev.githublistapp.core
+package com.ana.dev.githublistapp.retrofit
 
 import com.ana.dev.githublistapp.BuildConfig
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import java.io.IOException
 
 
 object RetrofitConfig {
@@ -15,7 +12,10 @@ object RetrofitConfig {
     fun getInstance() =
         Retrofit.Builder().baseUrl(BuildConfig.BASE_API_URL)
             .addConverterFactory(MoshiConverterFactory.create())
-            .client(generateClient().build())
+            .client(
+                generateClient()
+                    .build()
+            )
             .build()
 
     fun provideGithubAPI(retrofit: Retrofit) = retrofit.create(GithubServices::class.java)

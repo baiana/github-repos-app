@@ -27,8 +27,6 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
-
     fun displayItemInfo(project: Project?) {
         project?.let {
             val intent = Intent(this, ProjectInfoActivity::class.java)
