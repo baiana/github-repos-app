@@ -22,7 +22,6 @@ fun ImageView.loadWithPicasso(url: String) {
     Picasso.get().load(url).placeholder(R.drawable.ic_user_place_holder).into(this)
 }
 
-
 fun View.visible() {
     this.visibility = View.VISIBLE
 }
@@ -71,7 +70,6 @@ fun getErrorMessageByCode(code: Int) =
 
 
 fun ImageView.stopLoading() {
-    try {
         if (this.drawable is AnimatedVectorDrawable && this.context != null) {
             val loading = this.drawable as AnimatedVectorDrawable
             loading.stop()
@@ -79,13 +77,9 @@ fun ImageView.stopLoading() {
         } else {
             Log.e("Error/animation", "Imageview não é animação")
         }
-    } catch (e: Exception) {
-        Log.e("Exception", e.message ?: "Exception ao parar o loading")
     }
 
-
     fun ImageView.playLoading() {
-        try {
             if (this.drawable is AnimatedVectorDrawable && this.context != null) {
                 val loading = this.drawable as AnimatedVectorDrawable
                 loading.apply {
@@ -100,9 +94,5 @@ fun ImageView.stopLoading() {
             } else {
                 Log.e("Error/animation", "Imageview não é animação")
             }
-        } catch (e: Exception) {
-            Log.e("Error/Loading", "Loading exception ${e.message}")
-        }
     }
 
-}

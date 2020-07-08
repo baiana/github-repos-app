@@ -33,18 +33,11 @@ class ProjectInfoActivity : AppCompatActivity() {
         viewModelSetup()
     }
 
-    override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
-        return super.onCreateView(name, context, attrs)
-
-    }
-
     private fun viewModelSetup() {
-//        viewModel
         viewModel.projectInfoLiveData.observe(this, Observer {
             val repo = it.projectInfo
             with(binding) {
                 repo?.apply {
-
                     descriptionTXT.text = description
                     userTXT.text = user.name
                     projectTXT.text = name
@@ -53,15 +46,11 @@ class ProjectInfoActivity : AppCompatActivity() {
                         openProjectButtonCLickListener(url)
                     }
                 }
-
             }
-
         })
 
         viewModel.displayProjectInfo(intent.getParcelableExtra(PROJECT))
-        binding.closeBTN.setOnClickListener {
-            onBackPressed()
-        }
+        binding.closeBTN.setOnClickListener { onBackPressed() }
     }
 
     private fun openExternalLink(url: String) {

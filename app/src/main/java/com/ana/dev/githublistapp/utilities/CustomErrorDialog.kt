@@ -21,7 +21,6 @@ class CustomErrorDialog(
         binding.errorTXT.text = errorMessage
     }
 
-
     fun displayDialog() {
         binding.tryAgainBTN.gone()
         this.show()

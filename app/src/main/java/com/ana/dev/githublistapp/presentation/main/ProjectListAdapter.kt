@@ -14,25 +14,22 @@ class ProjectListAdapter(private var projects: ArrayList<Project>, val resources
 
     var detailsClickListener: OnProjectClickListener? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProjectHolder {
-        val binding =
-            ProjectListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ProjectListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ProjectHolder(binding, resources)
     }
 
     override fun getItemCount() = projects.size
 
     override fun onBindViewHolder(holder: ProjectHolder, position: Int) {
-        val repoItem = projects[position]
-        holder.bind(repoItem, detailsClickListener)
+        holder.bind( projects[position], detailsClickListener)
     }
 
-    class ProjectHolder(private val binding: ProjectListItemBinding, val resources: Resources) :
+    class ProjectHolder(private val binding: ProjectListItemBinding, private val resources: Resources) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(repo: Project, detailsClickListener: OnProjectClickListener?) {
             with(binding) {
-                projectTXT.text =
-                    resources.getString(R.string.project_name_template, repo.user.name, repo.name)
+                projectTXT.text = resources.getString(R.string.project_name_template, repo.user.name, repo.name)
                 userTXT.text = repo.description
                 avatarIMG.loadWithPicasso(repo.user.pictureUrl)
                 holderCL.setOnClickListener {
@@ -50,6 +47,5 @@ class ProjectListAdapter(private var projects: ArrayList<Project>, val resources
     interface OnProjectClickListener {
         fun onClick(project: Project)
     }
-
 
 }
