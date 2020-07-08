@@ -7,6 +7,8 @@ import androidx.lifecycle.viewModelScope
 import com.ana.dev.githublistapp.data.model.*
 import com.ana.dev.githublistapp.data.repository.ProjectsRepository
 import com.ana.dev.githublistapp.data.response.ProjectResult
+import com.ana.dev.githublistapp.utilities.convertToProjectArray
+import com.ana.dev.githublistapp.utilities.getErrorMessageByCode
 import kotlinx.coroutines.launch
 import org.koin.core.KoinComponent
 import org.koin.core.inject
@@ -23,55 +25,52 @@ class MainViewModel : ViewModel(), KoinComponent {
     }
 
     fun getProjectsList() {
-        _fragmentProjectsStateLiveData.postValue(startLoading())
+        changeViewStateValue(startLoading())
         viewModelScope.launch {
             val result = repository.getProjectsList()
             with(result) {
                 if (this.isSuccessful) {
                     body()?.takeIf { it.isNotEmpty() }?.let {
-                        val convertedList = convertBodyToProjectList(it)
-                        _fragmentProjectsStateLiveData.postValue(displayProjectList(convertedList))
+                        val convertedList = it.convertToProjectArray()
+                        changeViewStateValue(displayProjectList(convertedList))
                     }
                 } else {
-//                    todo tratamento de erro
+                    handleError(this.code())
                 }
             }
         }
     }
 
-    private fun convertBodyToProjectList(list: List<ProjectResult>) =
-        ArrayList(list.map {
-            Project(
-                it.id,
-                it.name,
-                User(it.user.username, it.user.pictureLink),
-                it.description ?: "",
-                it.url
-            )
-        })
-
+    private fun handleError(errorCode: Int) {
+        val errorId = getErrorMessageByCode(errorCode)
+        changeViewStateValue(displayError(errorId))
+    }
 
     private fun searchWithAPI(query: String) {
         val currentList = fragmentProjectsStateLiveData.value?.projectList ?: ArrayList()
-        _fragmentProjectsStateLiveData.postValue(startLoading(currentList))
+        changeViewStateValue(startLoading(currentList))
         viewModelScope.launch {
             with(repository.searchProjectByName(query)) {
                 if (isSuccessful) {
                     body()?.result?.let {
-                        _fragmentProjectsStateLiveData.postValue(
+                        changeViewStateValue(
                             displaySearchResult(
-                                convertBodyToProjectList(it), currentList
+                                it.convertToProjectArray(), currentList
                             )
                         )
                     } ?: run {
-                        //todo handle error lista nula
+                        changeViewStateValue(
+                            displaySearchResult(
+                                ArrayList(),
+                                currentList
+                            )
+                        )
                     }
                 } else {
-
+                    handleError(this.code())
                 }
             }
         }
-
     }
 
     fun searchProjectsByName(query: String, submitted: Boolean = false) {
@@ -80,27 +79,34 @@ class MainViewModel : ViewModel(), KoinComponent {
         } else {
             resetSearch()
         }
-
     }
 
     private fun localSearch(query: String) {
         val currentList = fragmentProjectsStateLiveData.value?.projectList ?: ArrayList()
         val result =
             fragmentProjectsStateLiveData.value?.projectList?.filter { it.name.startsWith(query) } as ArrayList
-        _fragmentProjectsStateLiveData.postValue(displaySearchResult(result, currentList))
+        changeViewStateValue(displaySearchResult(result, currentList))
     }
 
     fun resetSearch() {
         val regularList = fragmentProjectsStateLiveData.value?.projectList ?: ArrayList()
-        _fragmentProjectsStateLiveData.postValue(displayProjectList(regularList))
+        if (regularList.size == 0) {
+            getProjectsList()
+        } else {
+            changeViewStateValue(displayProjectList(regularList))
+        }
     }
 
     fun displayProjectInfo(project: Project) {
-        _fragmentProjectsStateLiveData.postValue(displaySelectedInfo(project))
+        changeViewStateValue(displaySelectedInfo(project))
+    }
+
+    private fun changeViewStateValue(newValue: MainViewState) {
+        _fragmentProjectsStateLiveData.postValue(newValue)
     }
 
     fun clearSelected() {
-        _fragmentProjectsStateLiveData.postValue(
+        changeViewStateValue(
             displayProjectList(
                 fragmentProjectsStateLiveData.value?.projectList ?: ArrayList()
             )

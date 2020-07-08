@@ -25,6 +25,10 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="SplashTheme" parent="AppTheme">
+        <item name="android:windowBackground">@layout/splash_screen_layout</item>
+    </style>
+
     <style name="searchStyle" parent="Widget.AppCompat.SearchView">
         <item name="android:editTextColor">@color/eggshell_white</item>
         <item name="queryBackground">@null</item>
@@ -33,6 +37,14 @@
         <item name="closeIcon">@drawable/ic_close_white</item>
         <item name="searchIcon">@drawable/ic_search</item>
 
+    </style>
+
+    <style name="errorMessageLightStyle">
+        <item name="android:padding">16dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/eggshell_white</item>
+        <item name="android:layout_margin">16dp</item>
+        <item name="android:fontFamily">@font/roboto_light</item>
     </style>
 
 

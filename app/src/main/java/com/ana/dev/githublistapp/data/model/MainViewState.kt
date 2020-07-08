@@ -4,7 +4,7 @@ import com.ana.dev.githublistapp.presentation.main.MainViewModel
 
 data class MainViewState internal constructor(
     val isLoading: Boolean = false,
-    val error: String = "",
+    val errorId: Int = 0,
     val searchData: ArrayList<Project>? = null,
     val projectList: ArrayList<Project>? = null,
     val selected: Project? = null
@@ -23,5 +23,4 @@ fun MainViewModel.startLoading(currentList: ArrayList<Project>? = null) =
 fun MainViewModel.displaySelectedInfo(project: Project) =
     MainViewState(selected = project)
 
-fun MainViewModel.clear() = MainViewState()
-fun MainViewModel.displayError(error: String) = MainViewState(isLoading = false, error = error)
+fun MainViewModel.displayError(errorId: Int) = MainViewState(isLoading = false, errorId = errorId)

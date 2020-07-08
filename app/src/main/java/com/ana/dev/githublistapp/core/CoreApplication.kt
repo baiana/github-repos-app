@@ -17,6 +17,4 @@ class CoreApplication : Application() {
             modules(apiModule, mainModule, displayInfoModule)
         }
     }
-
-
 }
