@@ -19,18 +19,6 @@ fun ImageView.loadWithPicasso(url: String) {
     Picasso.get().load(url).placeholder(R.drawable.ic_user_place_holder).into(this)
 }
 
-fun ImageView.playLoading() {
-//    val avd = AnimatedVectorDrawableCompat.create(this.context,
-//        R.drawable.loading_octocat)
-//    avd?.registerAnimationCallback(object :Animatable2Compat.AnimationCallback() {
-//        override fun onAnimationEnd(drawable: Drawable?) {
-//            avd.start()
-//        }
-//    })
-//    this.apply {
-//        setImageDrawable(avd)
-//    }
-}
 
 fun View.visible() {
     this.visibility = View.VISIBLE
@@ -68,15 +56,38 @@ fun getErrorMessageByCode(code: Int) =
 
 
 fun ImageView.stopLoading() {
-//    if (this.drawable is AnimatedVectorDrawable) {
-//        try {
-//            val loading = this.drawable as AnimatedVectorDrawable
-//            loading.stop()
-//            this.gone()
-//        } catch (e: Exception) {
-//            Log.e("Exception", e.message ?: "Exception ao parar o loading")
-//        }
-//    } else {
-//        Log.e("Error/animation", "Imageview não é animação")
-//    }
+    try {
+        if (this.drawable is AnimatedVectorDrawable && this.context != null) {
+            val loading = this.drawable as AnimatedVectorDrawable
+            loading.stop()
+            this.gone()
+        } else {
+            Log.e("Error/animation", "Imageview não é animação")
+        }
+    } catch (e: Exception) {
+        Log.e("Exception", e.message ?: "Exception ao parar o loading")
+    }
+
+
+    fun ImageView.playLoading() {
+        try {
+            if (this.drawable is AnimatedVectorDrawable && this.context != null) {
+                val loading = this.drawable as AnimatedVectorDrawable
+                loading.apply {
+                    registerAnimationCallback(object : Animatable2.AnimationCallback() {
+                        override fun onAnimationEnd(drawable: Drawable?) {
+                            loading.start()
+                        }
+                    })
+                    start()
+                }
+                this.visible()
+            } else {
+                Log.e("Error/animation", "Imageview não é animação")
+            }
+        } catch (e: Exception) {
+            Log.e("Error/Loading", "Loading exception ${e.message}")
+        }
+    }
+
 }

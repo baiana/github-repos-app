@@ -1,5 +1,6 @@
 package com.ana.dev.githublistapp.presentation.main.fragments
 
+import android.graphics.drawable.AnimatedVectorDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -81,8 +82,9 @@ class ProjectsFragment : Fragment() {
 
     }
 
+
     private fun displayError(error: Int) {
-        binding.loadingPB.gone()
+        hideLoading()
         activity?.displayError(resources.getString(error))
     }
 
@@ -90,13 +92,16 @@ class ProjectsFragment : Fragment() {
         binding.loadingPB.visible()
     }
 
-    private fun displayProjectInfo(project: Project) {
+    private fun hideLoading() {
         binding.loadingPB.gone()
+    }
+
+    private fun displayProjectInfo(project: Project) {
         viewModel.displayProjectInfo(project)
     }
 
     private fun recyclerSetup(projects: ArrayList<Project>) {
-        binding.loadingPB.gone()
+        hideLoading()
         if (binding.projectsRV.adapter == null) {
             with(binding.projectsRV) {
                 this.layoutManager =
@@ -106,12 +111,9 @@ class ProjectsFragment : Fragment() {
                         override fun onClick(project: Project) {
                             displayProjectInfo(project)
                         }
-
                     }
                 }
-
             }
-
         } else {
             (binding.projectsRV.adapter as ProjectListAdapter).swap(projects)
             binding.projectsRV.smoothScrollToPosition(0)
