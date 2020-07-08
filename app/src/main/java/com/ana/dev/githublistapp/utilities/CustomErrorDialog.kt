@@ -6,7 +6,7 @@ import androidx.appcompat.app.AlertDialog
 import com.ana.dev.githublistapp.databinding.CustomErrorDialogLayoutBinding
 
 class CustomErrorDialog(
-    context: Context, val errorMessage: String
+    context: Context, val errorMessage: String, private val dismissOnclick: Boolean = false
 ) : AlertDialog(context) {
 
     private val binding: CustomErrorDialogLayoutBinding by lazy(LazyThreadSafetyMode.NONE) {
@@ -19,6 +19,7 @@ class CustomErrorDialog(
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         binding.errorTXT.text = errorMessage
+        this.setCanceledOnTouchOutside(dismissOnclick)
     }
 
     fun displayDialog() {

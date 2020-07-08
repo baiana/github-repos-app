@@ -26,7 +26,7 @@
     </style>
 
     <style name="SplashTheme" parent="AppTheme">
-        <item name="android:windowBackground">@layout/splash_screen_layout</item>
+        <item name="android:windowBackground">@drawable/splash_screen_background</item>
     </style>
 
     <style name="searchStyle" parent="Widget.AppCompat.SearchView">

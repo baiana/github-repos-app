@@ -8,6 +8,7 @@
     <string name="try_again">Tentar novamente</string>
 
     <!--    Mensagens de erro-->
+    <string name="error_no_internet"> Não estamos encontrando sua conexão a internet&#x1F575;&#x1F3FE;\n Você pode nos ajudar nessa busca? </string>
     <string name="error_forbidden_401">	Nosso detetive não está te reconhecendo &#x1F575;&#x1F3FE;\n\n Por favor, confira suas credenciais antes de continuar </string>
     <!--   Não foi possível validar suas credencias-->
     <string name="error_not_found_404">Esse não é o resultado que você está procurando &#128680;</string>

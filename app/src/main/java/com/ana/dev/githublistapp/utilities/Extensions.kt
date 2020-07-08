@@ -4,19 +4,17 @@ import android.content.Context
 import android.graphics.drawable.Animatable2
 import android.graphics.drawable.AnimatedVectorDrawable
 import android.graphics.drawable.Drawable
-import android.media.Image
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
-import androidx.vectordrawable.graphics.drawable.Animatable2Compat
-import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import com.ana.dev.githublistapp.R
 import com.ana.dev.githublistapp.data.model.Project
 import com.ana.dev.githublistapp.data.model.User
 import com.ana.dev.githublistapp.data.response.ProjectResult
 import com.squareup.picasso.Picasso
-import java.lang.Exception
-import kotlin.math.log
+
 
 fun ImageView.loadWithPicasso(url: String) {
     Picasso.get().load(url).placeholder(R.drawable.ic_user_place_holder).into(this)
@@ -34,11 +32,19 @@ fun View.invisible() {
     this.visibility = View.INVISIBLE
 }
 
-fun Context.displayErrorWithFunction(message: String, tryAgainFun: () -> Unit) {
-    CustomErrorDialog(this, errorMessage = message).displayDialogWithTryAgain(tryAgainFun)
+fun Context.displayErrorWithFunction(
+    message: String,
+    tryAgainFun: () -> Unit,
+    dismissOnclick: Boolean = false
+) {
+    CustomErrorDialog(
+        this,
+        errorMessage = message,
+        dismissOnclick = dismissOnclick
+    ).displayDialogWithTryAgain(tryAgainFun)
 }
 
- fun List<ProjectResult>.convertToProjectArray() =
+fun List<ProjectResult>.convertToProjectArray() =
     ArrayList(this.map {
         Project(
             it.id,
@@ -69,30 +75,36 @@ fun getErrorMessageByCode(code: Int) =
     }
 
 
-fun ImageView.stopLoading() {
-        if (this.drawable is AnimatedVectorDrawable && this.context != null) {
-            val loading = this.drawable as AnimatedVectorDrawable
-            loading.stop()
-            this.gone()
-        } else {
-            Log.e("Error/animation", "Imageview não é animação")
-        }
-    }
+fun Context.isConnected(): Boolean {
+    val connectivityManager =
+        this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    return connectivityManager.activeNetwork != null
+}
 
-    fun ImageView.playLoading() {
-            if (this.drawable is AnimatedVectorDrawable && this.context != null) {
-                val loading = this.drawable as AnimatedVectorDrawable
-                loading.apply {
-                    registerAnimationCallback(object : Animatable2.AnimationCallback() {
-                        override fun onAnimationEnd(drawable: Drawable?) {
-                            loading.start()
-                        }
-                    })
-                    start()
-                }
-                this.visible()
-            } else {
-                Log.e("Error/animation", "Imageview não é animação")
-            }
+fun ImageView.stopLoading() {
+    if (this.drawable is AnimatedVectorDrawable && this.context != null) {
+        val loading = this.drawable as AnimatedVectorDrawable
+        loading.stop()
+        this.gone()
+    } else {
+        Log.e("Error/animation", "Imageview não é animação")
     }
+}
+
+fun ImageView.playLoading() {
+    if (this.drawable is AnimatedVectorDrawable && this.context != null) {
+        val loading = this.drawable as AnimatedVectorDrawable
+        loading.apply {
+            registerAnimationCallback(object : Animatable2.AnimationCallback() {
+                override fun onAnimationEnd(drawable: Drawable?) {
+                    loading.start()
+                }
+            })
+            start()
+        }
+        this.visible()
+    } else {
+        Log.e("Error/animation", "Imageview não é animação")
+    }
+}
 
