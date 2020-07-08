@@ -10,6 +10,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ana.dev.githublistapp.data.model.Project
+import com.ana.dev.githublistapp.databinding.ActivityMainBinding
 import com.ana.dev.githublistapp.databinding.FragmentProjectsBinding
 import com.ana.dev.githublistapp.presentation.main.MainActivity
 import com.ana.dev.githublistapp.presentation.main.MainViewModel
@@ -20,7 +21,11 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class ProjectsFragment : Fragment() {
     private val viewModel: MainViewModel by viewModel()
 
-    private lateinit var binding: FragmentProjectsBinding
+    private val binding by lazy(LazyThreadSafetyMode.NONE) {
+        FragmentProjectsBinding.inflate(
+            layoutInflater
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +36,6 @@ class ProjectsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentProjectsBinding.inflate(layoutInflater)
         return binding.root
     }
 
@@ -76,8 +80,9 @@ class ProjectsFragment : Fragment() {
     }
 
     private fun displayEmptySearchScreen() {
-        Toast.makeText(context, "NÃO TEM RESULTADO VISH", Toast.LENGTH_SHORT).show()
-
+        binding.emptyListGP.visible()
+        binding.projectsRV.gone()
+        binding.loadingPB.gone()
     }
 
 
@@ -99,7 +104,6 @@ class ProjectsFragment : Fragment() {
     }
 
     private fun recyclerSetup(projects: ArrayList<Project>) {
-        hideLoading()
         if (binding.projectsRV.adapter == null) {
             with(binding.projectsRV) {
                 this.layoutManager =
@@ -116,6 +120,13 @@ class ProjectsFragment : Fragment() {
             (binding.projectsRV.adapter as ProjectListAdapter).swap(projects)
             binding.projectsRV.smoothScrollToPosition(0)
         }
+        displayRecycler()
+    }
+
+    private fun displayRecycler() {
+        hideLoading()
+        binding.emptyListGP.gone()
+        binding.projectsRV.visible()
     }
 
     private fun searchConfig() {
@@ -138,7 +149,6 @@ class ProjectsFragment : Fragment() {
 
             setOnCloseListener {
                 resetSearchView()
-                viewModel.resetSearch()
                 true
             }
         }
@@ -147,6 +157,7 @@ class ProjectsFragment : Fragment() {
     private fun resetSearchView() {
         binding.projectSV.setQuery(null, false)
         binding.projectSV.clearFocus()
+        viewModel.resetSearch()
     }
 }
 
