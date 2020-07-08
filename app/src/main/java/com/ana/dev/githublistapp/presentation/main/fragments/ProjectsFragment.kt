@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -76,6 +77,7 @@ class ProjectsFragment : Fragment() {
     }
 
     private fun displayEmptySearchScreen() {
+        Toast.makeText(context, "NÃO TEM RESULTADO VISH", Toast.LENGTH_SHORT).show()
 
     }
 
@@ -99,7 +101,7 @@ class ProjectsFragment : Fragment() {
             with(binding.projectsRV) {
                 this.layoutManager =
                     LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-                this.adapter = ProjectListAdapter(projects).apply {
+                this.adapter = ProjectListAdapter(projects, resources).apply {
                     detailsClickListener = object : ProjectListAdapter.OnProjectClickListener {
                         override fun onClick(project: Project) {
                             displayProjectInfo(project)

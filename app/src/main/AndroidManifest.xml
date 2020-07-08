@@ -3,6 +3,7 @@
     package="com.ana.dev.githublistapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-feature android:name="android.permission.INTERNET" />
 
     <application
         android:name=".core.CoreApplication"
@@ -12,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".presentation.projectInfo.ProjectInfoActivity"></activity>
+        <activity android:name=".presentation.projectInfo.ProjectInfoActivity" />
         <activity
             android:name=".presentation.main.MainActivity"
             android:theme="@style/SplashTheme">

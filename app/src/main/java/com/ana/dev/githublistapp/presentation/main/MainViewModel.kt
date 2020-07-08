@@ -15,19 +15,16 @@ import org.koin.core.inject
 class MainViewModel : ViewModel(), KoinComponent {
 
     private val repository: ProjectsRepository by inject()
-    private val _viewStateLiveData = MutableLiveData<MainViewState>()
-    val stateLiveData: LiveData<MainViewState> get() = _viewStateLiveData
 
     private val _fragmentProjectsStateLiveData = MutableLiveData<MainViewState>()
     val fragmentProjectsStateLiveData: LiveData<MainViewState> get() = _fragmentProjectsStateLiveData
 
     init {
-        _viewStateLiveData.value = MainViewState()
         _fragmentProjectsStateLiveData.value = MainViewState()
     }
 
     fun getProjectsList() {
-        _viewStateLiveData.postValue(startLoading())
+        _fragmentProjectsStateLiveData.postValue(startLoading())
         viewModelScope.launch {
             val result = repository.getProjectsList()
             with(result) {
@@ -73,8 +70,12 @@ class MainViewModel : ViewModel(), KoinComponent {
                             )
                         )
                     } ?: run {
-                        //todo handle error lista nula
-
+                        _fragmentProjectsStateLiveData.postValue(
+                            displaySearchResult(
+                                ArrayList(),
+                                currentList
+                            )
+                        )
                     }
                 } else {
                     handleError(this.code())
@@ -102,7 +103,11 @@ class MainViewModel : ViewModel(), KoinComponent {
 
     fun resetSearch() {
         val regularList = fragmentProjectsStateLiveData.value?.projectList ?: ArrayList()
-        _fragmentProjectsStateLiveData.postValue(displayProjectList(regularList))
+        if (regularList.size == 0) {
+            getProjectsList()
+        } else {
+            _fragmentProjectsStateLiveData.postValue(displayProjectList(regularList))
+        }
     }
 
     fun displayProjectInfo(project: Project) {
