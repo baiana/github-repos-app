@@ -30,12 +30,14 @@ class ProjectInfoActivity : AppCompatActivity() {
             val repo = it.projectInfo
             with(binding) {
                 repo?.apply {
-                    descriptionTXT.text = description
                     userTXT.text = user.name
                     projectTXT.text = name
                     avatarIMG.loadWithPicasso(user.pictureUrl)
                     if (url.isNotBlank()) {
                         openProjectButtonCLickListener(url)
+                    }
+                    if (description.isNotBlank()) {
+                        descriptionTXT.text = description
                     }
                 }
             }

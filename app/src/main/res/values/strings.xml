@@ -6,6 +6,7 @@
     <string name="project_name_template">%s/%s</string>
     <string name="error_icon_content">ícone linear de uma janela com um x no centro</string>
     <string name="try_again">Tentar novamente</string>
+    <string name="no_description">Esse repositório não possui descrição &#x1F646;&#x1F3FE;\nQuer dar uma chance? Clica no botão para conhecer mais.</string>
 
     <!--    Mensagens de erro-->
     <string name="error_no_internet"> Não estamos encontrando sua conexão a internet&#x1F575;&#x1F3FE;\n Você pode nos ajudar nessa busca? </string>
