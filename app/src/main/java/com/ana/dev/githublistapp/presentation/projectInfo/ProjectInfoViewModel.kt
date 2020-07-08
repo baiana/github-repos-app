@@ -5,6 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.ana.dev.githublistapp.R
 import com.ana.dev.githublistapp.data.model.Project
+import com.ana.dev.githublistapp.data.model.ProjectInfoViewState
+import com.ana.dev.githublistapp.data.model.setErrorId
+import com.ana.dev.githublistapp.data.model.setProjectInfo
 
 class ProjectInfoViewModel : ViewModel() {
 

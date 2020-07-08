@@ -1,22 +1,14 @@
 package com.ana.dev.githublistapp.presentation.projectInfo
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.AttributeSet
-import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.ana.dev.githublistapp.R
 import com.ana.dev.githublistapp.utilities.loadWithPicasso
 import com.ana.dev.githublistapp.databinding.ActivityProjectInfoBinding
-import com.ana.dev.githublistapp.utilities.CustomErrorDialog
-import com.ana.dev.githublistapp.utilities.displayError
-import com.ana.dev.githublistapp.utilities.displayErrorWithFunction
 import org.koin.androidx.viewmodel.ext.android.viewModel
-
 
 class ProjectInfoActivity : AppCompatActivity() {
     private val viewModel: ProjectInfoViewModel by viewModel()
@@ -48,7 +40,6 @@ class ProjectInfoActivity : AppCompatActivity() {
                 }
             }
         })
-
         viewModel.displayProjectInfo(intent.getParcelableExtra(PROJECT))
         binding.closeBTN.setOnClickListener { onBackPressed() }
     }
@@ -66,7 +57,6 @@ class ProjectInfoActivity : AppCompatActivity() {
         binding.userInfoLL.setOnClickListener {
             openUserProfile()
         }
-
     }
 
     private fun openUserProfile() {

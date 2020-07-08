@@ -81,13 +81,6 @@ class MainViewModel : ViewModel(), KoinComponent {
         }
     }
 
-    private fun localSearch(query: String) {
-        val currentList = fragmentProjectsStateLiveData.value?.projectList ?: ArrayList()
-        val result =
-            fragmentProjectsStateLiveData.value?.projectList?.filter { it.name.startsWith(query) } as ArrayList
-        changeViewStateValue(displaySearchResult(result, currentList))
-    }
-
     fun resetSearch() {
         val regularList = fragmentProjectsStateLiveData.value?.projectList ?: ArrayList()
         if (regularList.size == 0) {

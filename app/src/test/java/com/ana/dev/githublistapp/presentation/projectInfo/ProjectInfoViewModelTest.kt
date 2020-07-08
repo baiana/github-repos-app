@@ -1,26 +1,15 @@
 package com.ana.dev.githublistapp.presentation.projectInfo
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.LiveData
 import com.ana.dev.githublistapp.data.model.Project
+import com.ana.dev.githublistapp.data.model.ProjectInfoViewState
 import com.ana.dev.githublistapp.data.model.User
 import io.mockk.every
-import io.mockk.mockk
 import io.mockk.spyk
 import junit.framework.Assert.*
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.TestCoroutineDispatcher
-import kotlinx.coroutines.test.resetMain
-import kotlinx.coroutines.test.setMain
-import org.junit.After
-import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.koin.core.context.stopKoin
-import org.koin.dsl.module
-import org.koin.test.KoinTest
-import org.koin.test.KoinTestRule
 
 @ExperimentalCoroutinesApi
 class ProjectInfoViewModelTest() {
@@ -68,7 +57,9 @@ class ProjectInfoViewModelTest() {
         // Given
         viewModel = spyk(ProjectInfoViewModel())
 
-        every { viewModel.projectInfoLiveData.value } returns ProjectInfoViewState(validProjectMock)
+        every { viewModel.projectInfoLiveData.value } returns ProjectInfoViewState(
+            validProjectMock
+        )
 
         // When
         // username is requested

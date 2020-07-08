@@ -1,10 +1,11 @@
 <resources>
-    <string name="app_name">gitFeed</string>
+    <string name="app_name">GitFeed</string>
     <string name="repo_description">Descrição do repositório:</string>
     <string name="visit_repo">Visitar Repositório</string>
     <string name="github_url_x">https://github.com/%s</string>
     <string name="project_name_template">%s/%s</string>
     <string name="error_icon_content">ícone linear de uma janela com um x no centro</string>
+    <string name="try_again">Tentar novamente</string>
 
     <!--    Mensagens de erro-->
     <string name="error_forbidden_401">	Nosso detetive não está te reconhecendo &#x1F575;&#x1F3FE;\n\n Por favor, confira suas credenciais antes de continuar </string>
@@ -13,7 +14,6 @@
     <!--  Não foi possível encotrar os resultados para a sua pesquisa -->
     <string name="generic_client_error">&#128680; Algo de errado não está certo &#128680;\n tente novamente </string>
     <string name="error_try_again_449">Não foi dessa vez, você pode tentar novamente?</string>
-    <string name="error_server_500">\"Pedimos perdão pelo vacilo Estamos trabalhando para solucionar esse erro do nosso lado</string>
-    <string name="try_again">Tentar novamente</string>
+    <string name="error_server_500">Pedimos perdão pelo vacilo \n Estamos trabalhando para solucionar esse erro do nosso lado</string>
     <!--   Não foi possível identificar o error, tente novamente-->
 </resources>

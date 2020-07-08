@@ -40,15 +40,12 @@
 
         <TextView
             android:id="@+id/projectTXT"
-            style="@style/itemTitle"
+            style="@style/detailsTitleStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
             android:layout_toEndOf="@id/repositoryIMG"
             android:paddingEnd="12dp"
-            android:textAlignment="textStart"
-            android:textColor="@color/colorPrimary"
-            android:textSize="24sp"
             tools:text="baiana / GithubListApp" />
 
         <TextView
@@ -116,7 +113,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
-            android:layout_toEndOf="@id/repositoryIMG"
+            android:paddingStart="12dp"
             android:paddingEnd="12dp"
             android:textAlignment="textStart"
             android:textColor="@color/colorPrimary"

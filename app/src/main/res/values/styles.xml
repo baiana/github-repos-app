@@ -47,5 +47,12 @@
         <item name="android:fontFamily">@font/roboto_light</item>
     </style>
 
+    <style name="detailsTitleStyle">
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 
 </resources>

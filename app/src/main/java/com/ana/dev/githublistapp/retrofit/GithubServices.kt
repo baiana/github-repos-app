@@ -13,5 +13,4 @@ interface GithubServices {
 
     @GET("/search/repositories")
     suspend fun searchProjects(@Query("q") query: String): Response<SearchResult>
-
 }
