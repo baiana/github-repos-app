@@ -1,13 +1,13 @@
-name: Pull Requests CI
+name: Pull Request CI
+
 on:
- pull_request:
-   branches:
-     — ‘master’
-     — ‘release*’
-     
- 
+  pull_request:
+    branches:
+      - 'master'
+      - 'release*'
+# Um workflow é composto de um ou mais Jobs que podem ser executados sequencialmente ou em paralelo
 jobs:
-    # Este Workflow contém dois Jobs chamados "test" e "build-and-deploy"
+  # Este Workflow contém dois Jobs chamados "test" e "build-and-deploy"
   test:
     name: Run Unit Tests
     # O tipo de runner em que o job será executado
@@ -23,7 +23,7 @@ jobs:
     #  Step para rodar testes unitários
     - name: Unit tests
       run: ./gradlew test --stacktrace
-    
+  
   build-and-generate-apk:
     # O tipo de runner em que o job será executado
     runs-on: ubuntu-latest
@@ -47,5 +47,3 @@ jobs:
       with:
         name: app
         path: app/build/outputs/apk/prod/debug/app-prod-debug.apk 
- 
-
