@@ -47,3 +47,13 @@ jobs:
       with:
         name: app
         path: app/build/outputs/apk/debug/app-debug.apk 
+        
+    - name: build debug to app center 
+      run: ./gradlew assembleDebug
+    - name: upload artefact to App Center
+      uses: wzieba/App-Center-action@v1.0.0
+      with:
+        appName: baiana/github-api-test
+        token: ${{secrets.APP_CENTER_TOKEN}}
+        group: Collaborators
+        file: app/build/outputs/apk/debug/app-debug.apk
