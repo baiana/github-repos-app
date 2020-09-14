@@ -11,11 +11,14 @@
     <!--    Mensagens de erro-->
     <string name="error_no_internet"> Não estamos encontrando sua conexão a internet&#x1F575;&#x1F3FE;\n Você pode nos ajudar nessa busca? </string>
     <string name="error_forbidden_401">	Nosso detetive não está te reconhecendo &#x1F575;&#x1F3FE;\n\n Por favor, confira suas credenciais antes de continuar </string>
+    
     <!--   Não foi possível validar suas credencias-->
     <string name="error_not_found_404">Esse não é o resultado que você está procurando &#128680;</string>
+    
     <!--  Não foi possível encotrar os resultados para a sua pesquisa -->
     <string name="generic_client_error">&#128680; Algo de errado não está certo &#128680;\n tente novamente </string>
     <string name="error_try_again_449">Não foi dessa vez, você pode tentar novamente?</string>
     <string name="error_server_500">Pedimos perdão pelo vacilo \n Estamos trabalhando para solucionar esse erro do nosso lado</string>
+    
     <!--   Não foi possível identificar o error, tente novamente-->
 </resources>
