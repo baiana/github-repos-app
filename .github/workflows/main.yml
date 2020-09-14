@@ -51,7 +51,7 @@ jobs:
     - name: build debug to app center 
       run: ./gradlew assembleDebug
     - name: upload artefact to App Center
-      uses: wzieba/App-Center-action@v1.0.0
+      uses: wzieba/AppCenter-Github-Action@v1.2.1
       with:
         appName: baiana/github-api-test
         token: ${{secrets.APP_CENTER_TOKEN}}
