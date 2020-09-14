@@ -35,8 +35,8 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8       
-    - name: Build Debug 
-      run: ./gradlew assembleDebug
+    - name: build release
+      run: ./gradlew assembleRelease
     # Step para salvar a APK como Artifact
       continue-on-error: false
     - name: upload artefact to App Center
@@ -45,7 +45,7 @@ jobs:
         appName: baiana/github-api-test
         token: ${{secrets.APP_CENTER_TOKEN}}
         group: Collaborators
-        file: app/build/outputs/apk/debug/app-debug.apk
-      
+        file: app/build/outputs/apk/release/app-release-unsigned.apk
+        continue-on-error: false
       
     
