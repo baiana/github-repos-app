@@ -45,7 +45,7 @@ jobs:
         appName: baiana/github-api-test
         token: ${{secrets.APP_CENTER_TOKEN}}
         group: Collaborators
-        file: app/build/outputs/apk/release/app-release-unsigned.apk
-        continue-on-error: false
+        file: app/build/outputs/apk/release/app-release.apk
+      continue-on-error: false
       
     
