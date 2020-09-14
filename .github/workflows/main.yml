@@ -42,14 +42,8 @@ jobs:
     - name: Build Debug 
       run: ./gradlew assembleDebug
     # Step para salvar a APK como Artifact
-    - name: Upload APK on Github Artifact
-      uses: actions/upload-artifact@v1
-      with:
-        name: app
-        path: app/build/outputs/apk/debug/app-debug.apk 
-        
-    - name: build debug to app center 
-      run: ./gradlew assembleDebug
+      continue-on-error: false
+      
     - name: upload artefact to App Center
       uses: wzieba/AppCenter-Github-Action@v1.2.1
       with:
@@ -57,3 +51,6 @@ jobs:
         token: ${{secrets.APP_CENTER_TOKEN}}
         group: Collaborators
         file: app/build/outputs/apk/debug/app-debug.apk
+      
+      
+    
