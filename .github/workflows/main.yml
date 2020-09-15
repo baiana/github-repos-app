@@ -41,7 +41,7 @@ jobs:
     # Step para Buildar o Projeto e gerar a APK
     - name: Build Debug 
       env: 
-        gradle.properties = ${{ secrets.GRADLE_PROPRETIES}}
+       ORG_GRADLE_PROJECT_API_TOKEN = ${{ secrets.GRADLE_API_TOKEN}}
       run: ./gradlew assembleDebug
 
         
