@@ -42,10 +42,13 @@ jobs:
     - name: Build Debug 
       env: 
        ORG_GRADLE_PROJECT_API_TOKEN: ${{ secrets.GRADLE_API_TOKEN}}
-      run: ./gradlew assembleDebug
-
-        
+      run: ./gradlew assembleDebug     
     # Step para salvar a APK como Artifact
       continue-on-error: false
       
+    - name: Upload APK on Github Artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: app
+        path: app/build/outputs/apk/prod/debug/app-prod-debug.apk 
 
