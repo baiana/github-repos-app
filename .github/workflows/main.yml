@@ -40,15 +40,15 @@ jobs:
       run: echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;20.0.5594570"
     # Step para Buildar o Projeto e gerar a APK
     - name: Build Debug 
-      run: ./gradlew assembleDebug
+      env: 
+       ORG_GRADLE_PROJECT_API_TOKEN: ${{ secrets.GRADLE_API_TOKEN}}
+      run: ./gradlew assembleDebug     
     # Step para salvar a APK como Artifact
       continue-on-error: false
       
-    - name: upload artefact to App Center
-      uses: wzieba/AppCenter-Github-Action@v1.2.1
+    - name: Upload APK on Github Artifact
+      uses: actions/upload-artifact@v1
       with:
-        appName: baiana/github-api-test
-        token: ${{secrets.APP_CENTER_TOKEN}}
-        group: Collaborators
-        file: app/build/outputs/apk/debug/app-debug.apk
-      
+        name: app
+        path: app/build/outputs/apk/debug/app-debug.apk 
+
